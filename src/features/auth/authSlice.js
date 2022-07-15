@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import userService from './usersService'
+import authService from './authService'
 
 
 const user = JSON.parse(localStorage.getItem('user'));
@@ -33,10 +33,10 @@ export const usersSlice = createSlice({
         // },
     },
     extraReducers: (builder) => {
-        builder
-
         // * EJEMPLO DE EXTRA REDUCER CON CICLO DE VIDA COMPLETO
 
+
+        // builder
         // .addCase(getById.pending, (state) => {
         //     state.isLoading = true
         // })
