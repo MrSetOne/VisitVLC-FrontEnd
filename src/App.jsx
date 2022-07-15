@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Map from "./components/Map/Map";
 import LogPage from "./components/LogPage/LogPage";
-import "antd/dist/antd.css";
+import "./antd-theme/antd-customized.css";
 
 function App() {
   return (
