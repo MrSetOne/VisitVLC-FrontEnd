@@ -1,0 +1,16 @@
+.Login {
+    width: 95vw;
+    background-color: #F2F1ED;
+    padding: 5vw;
+    border-radius: .5rem;
+    .Login__form {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        .Login__form--btns {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+    }
+}
