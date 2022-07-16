@@ -1,8 +1,6 @@
 import axios from 'axios'
 
-// * AQUI IRIA LA API DEL .ENV
-
-// const API_URL = process.env.REACT_APP_API_URL
+const API_URL = process.env.REACT_APP_API_URL
 
 // * EJEMPLO DE LLAMADA A LA API
 
@@ -15,12 +13,20 @@ import axios from 'axios'
 //     return res.data
 // }
 
+const login = async(data) => {
+    console.log(`${API_URL}/users/login`)
+    console.log(data)
+    const res = await axios.post(`${API_URL}/users/login`, data)
+    if (res.data) {
+        localStorage.setItem('user', JSON.stringify(res.data.user))
+        localStorage.setItem('token', JSON.stringify(res.data.token))
+    }
+    return (res.data)
+}
+
 
 const authService = {
-
-    // * EXPORTACIONES
-
-    // login,
+    login
 }
 
 export default authService

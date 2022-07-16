@@ -1,25 +1,45 @@
 import { Form, Input, Button } from "antd";
 import "./StepOne.scss";
 
-const StepOne = () => {
+const StepOne = ({ data }) => {
   return (
     <div className="StepOne">
       <Form.Item
         label="Firsname"
+        name="firstName"
         rules={[
           {
             required: true,
-            message: "Please confirm your password!",
+            message: "Please enter your firstname",
           },
         ]}
       >
-        <Input />
+        <Input placeholder="Your firstname" />
       </Form.Item>
-      <Form.Item label="Lastname">
-        <Input />
+      <Form.Item
+        label="Lastname"
+        name="lastName"
+        rules={[
+          {
+            required: true,
+            message: "Please enter your lastname",
+          },
+        ]}
+      >
+        <Input placeholder="Your Lastname" />
       </Form.Item>
-      <Form.Item label="email">
-        <Input />
+      <Form.Item
+        label="Email"
+        name="email"
+        rules={[
+          {
+            required: true,
+            type: "email",
+            message: "The input is not valid E-mail",
+          },
+        ]}
+      >
+        <Input placeholder="your@email.com" />
       </Form.Item>
       <Form.Item
         name="password"
@@ -27,12 +47,12 @@ const StepOne = () => {
         rules={[
           {
             required: true,
-            message: "Please input your password!",
+            message: "Please input your password",
           },
         ]}
         hasFeedback
       >
-        <Input.Password placeholder="Tu contraseña" />
+        <Input.Password placeholder="Your password" />
       </Form.Item>
       <Form.Item
         name="confirm"
@@ -42,7 +62,7 @@ const StepOne = () => {
         rules={[
           {
             required: true,
-            message: "Please confirm your password!",
+            message: "Please confirm your password",
           },
           ({ getFieldValue }) => ({
             validator(_, value) {
@@ -50,13 +70,13 @@ const StepOne = () => {
                 return Promise.resolve();
               }
               return Promise.reject(
-                new Error("The two passwords that you entered do not match!")
+                new Error("The two passwords that you entered do not match")
               );
             },
           }),
         ]}
       >
-        <Input.Password placeholder="Confirma tu contraseña" />
+        <Input.Password placeholder="Please confirm your password" />
       </Form.Item>
     </div>
   );

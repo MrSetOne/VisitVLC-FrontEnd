@@ -8,46 +8,59 @@ const token = JSON.parse(localStorage.getItem('token'))
 const initialState = {
     user: user ? user : null,
     token: token ? token : null,
-
+    isLoading: false,
+    isSucces: false,
+    isError: false,
+    notification: ""
 }
 
-// * EJEMPLO DE FUNCION
+export const logIn = createAsyncThunk('auth/login', async(data, thunkAPI) => {
+    try {
+        return await authService.login(data)
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data)
+    }
+})
 
-// export const getById = createAsyncThunk('users/getById', async(id, thunkAPI) => {
-//     try {
-//         return await userService.getById(id)
-//     } catch (error) {
-//         return thunkAPI.rejectWithValue(error.response.data)
-//     }
-// })
+export const signUp = createAsyncThunk('auth/signup', async(data, thunkAPI) => {
+    try {
+        console.log(data)
+    } catch (error) {
+        console.log(error)
+    }
+})
 
-export const usersSlice = createSlice({
-    name: "users",
+export const authSlice = createSlice({
+    name: "auth",
     initialState,
     reducers: {
-
-        //  * EJEMPLO DE REDUCER
-
-        // addLike: (state, action) => {
-        //     state.user.likedPosts.push(action.payload)
-        // },
+        resetNotifications: (state, action) => {
+            state.isError = false;
+            state.isLoading = false;
+            state.isSucces = false;
+            state.notification = "";
+        }
     },
     extraReducers: (builder) => {
-        // * EJEMPLO DE EXTRA REDUCER CON CICLO DE VIDA COMPLETO
-
-
-        // builder
-        // .addCase(getById.pending, (state) => {
-        //     state.isLoading = true
-        // })
-        // .addCase(getById.fulfilled, (state, action) => {
-        //     state.userDisplayed = action.payload.foundUser
-        //     state.isLoading = false
-        // })
-        // .addCase(getById.rejected, (state, action) => {
-        //     state.loadingFailed = true
-        // })
+        builder
+            .addCase(logIn.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(logIn.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.user = action.payload.user;
+                state.token = action.payload.token;
+                state.notification = action.payload.message;
+                state.isSucces = true;
+            })
+            .addCase(logIn.rejected, (state, action) => {
+                state.isError = true;
+                state.isLoading = false;
+                state.notification = action.payload.message;
+            })
     },
 })
 
-export default usersSlice.reducer
+export const { resetNotifications } = authSlice.actions;
+
+export default authSlice.reducer
