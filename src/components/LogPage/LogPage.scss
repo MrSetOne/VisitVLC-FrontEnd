@@ -6,4 +6,18 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    position: relative;
+    background-image: url(https://x.cdrst.com/zona/mr2/fotos/valencia/valencia_8ce532ef5fa8e231942767f2d03c9426.jpg);
+    background-position: center;
+    background-size: cover;
+    .LogPage__PreBrand {
+        position: absolute;
+        top: 1rem;
+        background-color: white;
+        padding: .4rem;
+        border-radius: 1.9rem;
+    }
+    .LogPage__Brand {
+        width: 11.2rem;
+    }
 }

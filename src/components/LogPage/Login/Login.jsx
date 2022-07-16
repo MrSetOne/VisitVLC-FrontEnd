@@ -1,52 +1,71 @@
-import { useState } from "react";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { Button, Form, Input } from "antd";
 import "./Login.scss";
 
-const Login = () => {
-  const [data, setData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const handleInputChange = ({ target }) => {
-    setData({
-      ...data,
-      [target.name]: target.value,
-    });
-  };
-
-  const submitInfo = (e) => {
-    e.preventDefault();
+const Login = ({ setNeedsignup }) => {
+  const onFinish = (values) => {
+    console.log("Received values of form: ", values);
   };
 
   return (
     <div className="Login">
-      <form className="Login__form" onSubmit={(e) => submitInfo(e)}>
-        <div className="Login__form--item">
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            name="email"
-            id="email"
-            onChange={handleInputChange}
+      <h1>Login</h1>
+      <Form
+        name="normal_login"
+        className="Login__form"
+        initialValues={{
+          remember: false,
+        }}
+        onFinish={onFinish}
+      >
+        <Form.Item
+          name="username"
+          rules={[
+            {
+              required: true,
+              message: "Please input your Username!",
+            },
+          ]}
+        >
+          <Input
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            placeholder="Username"
           />
-        </div>
-        <div className="Login__form--item">
-          <label htmlFor="password">Password</label>
-          <input
+        </Form.Item>
+        <Form.Item
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Please input your Password!",
+            },
+          ]}
+        >
+          <Input
+            prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
-            name="password"
-            id="password"
-            onChange={handleInputChange}
+            placeholder="Password"
           />
-        </div>
-        <div className="Login__form--btns">
-          <button type="submit" onClick={(e) => submitInfo(e)}>
-            Login
-          </button>
-          <button>Signup</button>
-        </div>
-      </form>
+        </Form.Item>
+        <Form.Item noStyle={true}>
+          <div className="Login__form--btns">
+            <Button
+              htmlType="submit"
+              className="login-form-button"
+              onClick={() => setNeedsignup(true)}
+            >
+              Sign up
+            </Button>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="login-form-button"
+            >
+              Log in
+            </Button>
+          </div>
+        </Form.Item>
+      </Form>
     </div>
   );
 };
