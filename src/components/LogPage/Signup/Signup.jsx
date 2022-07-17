@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
-import { Form, Button } from "antd";
+import { Form, Button, notification } from "antd";
 import StepOne from "./StepOne/StepOne";
 import "./Signup.scss";
 import StepTwo from "./StepTwo/StepTwo";
-import { signUp } from "../../../features/auth/authSlice";
-import { useDispatch } from "react-redux";
+import { signUp, resetNotifications } from "../../../features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Signup = ({ setNeedsignup }) => {
+  const {
+    notification: feedback,
+    isLoading,
+    isSucces,
+    isError,
+  } = useSelector((state) => state.auth);
+
   const dataInit = {
     firstName: "",
     lastName: "",
@@ -29,6 +36,29 @@ const Signup = ({ setNeedsignup }) => {
       dispatch(signUp({ ...data, ...values }));
     }
   };
+
+  useEffect(() => {
+    if (isSucces) {
+      notification.success({
+        message: "Wellcome",
+        description: feedback,
+        placement: "bottom",
+      });
+      setTimeout(() => {
+        dispatch(resetNotifications());
+      }, 2000);
+    }
+    if (isError) {
+      notification.error({
+        message: "Something has gone wrong...",
+        description: feedback,
+        placement: "bottom",
+      });
+      setTimeout(() => {
+        dispatch(resetNotifications());
+      }, 2000);
+    }
+  }, [feedback]);
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -54,7 +84,7 @@ const Signup = ({ setNeedsignup }) => {
             >
               Go Back
             </Button>
-            <Button htmlType="submit" type="primary">
+            <Button htmlType="submit" type="primary" loading={isLoading}>
               {step === 1 ? "Next" : "Submit"}
             </Button>
           </nav>

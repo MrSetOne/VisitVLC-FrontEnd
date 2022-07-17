@@ -23,7 +23,7 @@ const Login = ({ setNeedsignup }) => {
   useEffect(() => {
     if (isSucces) {
       notification.success({
-        message: "¡Ya casi estamos!",
+        message: "Wellcome",
         description: feedback,
         placement: "bottom",
       });

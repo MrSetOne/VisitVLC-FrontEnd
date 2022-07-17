@@ -14,8 +14,6 @@ const API_URL = process.env.REACT_APP_API_URL
 // }
 
 const login = async(data) => {
-    console.log(`${API_URL}/users/login`)
-    console.log(data)
     const res = await axios.post(`${API_URL}/users/login`, data)
     if (res.data) {
         localStorage.setItem('user', JSON.stringify(res.data.user))
@@ -24,9 +22,15 @@ const login = async(data) => {
     return (res.data)
 }
 
+const signUp = async(data) => {
+    const res = await axios.post(`${API_URL}/users`, data)
+    return (res.data)
+}
+
 
 const authService = {
-    login
+    login,
+    signUp
 }
 
 export default authService
