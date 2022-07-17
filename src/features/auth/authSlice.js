@@ -10,6 +10,7 @@ const initialState = {
     token: token ? token : null,
     isLoading: false,
     isSucces: false,
+    isSuccesLogOut: false,
     isError: false,
     notification: ""
 }
@@ -25,6 +26,14 @@ export const logIn = createAsyncThunk('auth/login', async(data, thunkAPI) => {
 export const signUp = createAsyncThunk('auth/signup', async(data, thunkAPI) => {
     try {
         return await authService.signUp(data)
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data)
+    }
+})
+
+export const logOut = createAsyncThunk('auth/logout', async(data, thunkAPI) => {
+    try {
+        return await authService.logOut()
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data)
     }
@@ -67,10 +76,22 @@ export const authSlice = createSlice({
                 state.notification = action.payload.message;
             })
             .addCase(signUp.rejected, (state, action) => {
-                console.log(action)
                 state.isLoading = false
                 state.isError = true
                 state.notification = action.payload.messages[0];
+            })
+            .addCase(logOut.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(logOut.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.user = null;
+                state.token = null;
+            })
+            .addCase(logOut.rejected, (state, action) => {
+                console.log(action)
+                state.isLoading = false
+                state.isError = true
             })
     },
 })

@@ -10,7 +10,6 @@ const Signup = ({ setNeedsignup }) => {
   const {
     notification: feedback,
     isLoading,
-    isSucces,
     isError,
   } = useSelector((state) => state.auth);
 
@@ -38,16 +37,6 @@ const Signup = ({ setNeedsignup }) => {
   };
 
   useEffect(() => {
-    if (isSucces) {
-      notification.success({
-        message: "Wellcome",
-        description: feedback,
-        placement: "bottom",
-      });
-      setTimeout(() => {
-        dispatch(resetNotifications());
-      }, 2000);
-    }
     if (isError) {
       notification.error({
         message: "Something has gone wrong...",
