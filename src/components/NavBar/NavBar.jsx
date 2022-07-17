@@ -10,6 +10,7 @@ import {
   faCrown,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const {
@@ -20,6 +21,7 @@ const NavBar = () => {
   } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [visibleDropDown, setVisibleDropDown] = useState(false);
   const [showPopConfirm, setShowPopConfirm] = useState(false);
@@ -32,6 +34,11 @@ const NavBar = () => {
     await dispatch(logOut());
     setShowPopConfirm(false);
     setVisibleDropDown(false);
+  };
+
+  const goTo = (dest) => {
+    setVisibleDropDown(false);
+    navigate(dest);
   };
 
   useEffect(() => {
@@ -52,10 +59,7 @@ const NavBar = () => {
       items={[
         {
           label: (
-            <div
-              className="Dropdown__Item"
-              onClick={() => setVisibleDropDown(false)}
-            >
+            <div className="Dropdown__Item" onClick={() => goTo("/profile")}>
               <FontAwesomeIcon icon={faUser} />
               <p>Your Profile</p>
             </div>
@@ -73,6 +77,7 @@ const NavBar = () => {
             </div>
           ),
           key: "1",
+          disabled: true,
         },
         {
           label: (
@@ -81,6 +86,10 @@ const NavBar = () => {
               title="Are you sure?"
               visible={showPopConfirm}
               onConfirm={() => goLogOut()}
+              onCancel={() => {
+                setShowPopConfirm(false);
+                setVisibleDropDown(false);
+              }}
               okText="Yes"
               cancelText="No"
               okButtonProps={{ loading: isLoading }}
@@ -103,7 +112,7 @@ const NavBar = () => {
 
   return (
     <nav className="NavBar">
-      <img src={brand} alt="VisitVLC" />
+      <img src={brand} alt="VisitVLC" onClick={() => goTo("/")} />
       <Dropdown
         onVisibleChange={handleVisibleChange}
         visible={visibleDropDown}
@@ -112,7 +121,9 @@ const NavBar = () => {
         placement="bottomRight"
         arrow
       >
-        <h2>{user.firstName}</h2>
+        <h2 className={visibleDropDown ? "h2--active" : null}>
+          {user.firstName}
+        </h2>
       </Dropdown>
     </nav>
   );
