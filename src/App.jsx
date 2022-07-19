@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import "./antd-theme/antd-customized.css";
 import NavBar from "./components/NavBar/NavBar";
 import MyProfile from "./components/MyProfile/MyProfile";
+import ShowRoutes from "./components/ShowRoutes/ShowRoutes";
 
 function App() {
   const { user } = useSelector((state) => state.auth);
@@ -21,6 +22,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/map" element={<Map />} />
             <Route path="/profile" element={<MyProfile />} />
+            <Route path="/allRoutes" element={<ShowRoutes />} />
           </Routes>
         </>
       ) : (
