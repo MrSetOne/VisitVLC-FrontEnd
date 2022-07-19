@@ -8,12 +8,15 @@ import {
   faLocationPin,
   faPlaceOfWorship,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="Home">
       <div className="Home__btns">
-        <button>
+        <button onClick={() => navigate("/profile")}>
           <FontAwesomeIcon icon={faUser} />
           <p>My profile</p>
         </button>
