@@ -20,6 +20,7 @@ export const routesSlice = createSlice({
     initialState,
     reducers: {
 
+
         // addLike: (state, action) => {
         //     state.user.likedPosts.push(action.payload)
         // },
