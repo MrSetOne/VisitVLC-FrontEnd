@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import L, { Icon } from "leaflet";
+import { useState } from "react";
+import { MapContainer, TileLayer } from "react-leaflet";
 import data from "../../assets/data.json";
 import "./MapView.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
-import { Drawer, Steps, Typography } from "antd";
+import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import SiteMarker from "./SiteMarker/SiteMarker";
 import UserPosition from "./UserPosition/UserPosition";
 import RouteInfo from "./RouteInfo/RouteInfo";
@@ -18,12 +16,9 @@ const MapView = () => {
   return (
     <>
       <FontAwesomeIcon
-        icon={faCircleInfo}
+        className="info__icon"
+        icon={faInfo}
         style={{
-          position: "absolute",
-          bottom: "calc(100vh - 7rem)",
-          right: "2rem",
-          zIndex: 1001,
           display: visibleDrawer ? "none" : "unset",
         }}
         onClick={() => setVisibleDrawer(!visibleDrawer)}

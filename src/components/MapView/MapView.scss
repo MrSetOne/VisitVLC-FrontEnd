@@ -1,4 +1,17 @@
-.leaflet-container{
+.leaflet-container {
     width: 100vw;
     height: calc(100vh - 5rem);
+}
+
+.info__icon {
+    color: white;
+    font-size: 3rem;
+    position: absolute;
+    top: 7rem;
+    right: 2rem;
+    z-index: 1001;
+    background-color: #ff6000;
+    padding: 1rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
 }
