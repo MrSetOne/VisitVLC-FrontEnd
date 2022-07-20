@@ -3,7 +3,8 @@ import routesService from './routesService'
 
 
 const initialState = {
-    routes: []
+    allRoutes: [],
+    isLoadingAllRoutes: true,
 }
 
 export const getAllRoutes = createAsyncThunk('routes/getAllRoutes', async(thunkAPI) => {
@@ -19,8 +20,6 @@ export const routesSlice = createSlice({
     initialState,
     reducers: {
 
-        //  * EJEMPLO DE REDUCER
-
         // addLike: (state, action) => {
         //     state.user.likedPosts.push(action.payload)
         // },
@@ -28,6 +27,17 @@ export const routesSlice = createSlice({
     extraReducers: (builder) => {
         // * EJEMPLO DE EXTRA REDUCER CON CICLO DE VIDA COMPLETO
 
+        builder
+            .addCase(getAllRoutes.pending, (state, action) => {
+                state.isLoadingAllRoutes = true
+            })
+            .addCase(getAllRoutes.fulfilled, (state, action) => {
+                state.isLoadingAllRoutes = false
+                state.allRoutes = action.payload
+            })
+            .addCase(getAllRoutes.rejected, (state, action) => {
+                state.isLoadingAllRoutes = false
+            })
 
         // builder
         // .addCase(getById.pending, (state) => {
@@ -42,5 +52,7 @@ export const routesSlice = createSlice({
         // })
     },
 })
+
+// export const { setPreload } = routesSlice.actions;
 
 export default routesSlice.reducer

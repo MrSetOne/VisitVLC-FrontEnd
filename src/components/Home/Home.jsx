@@ -28,7 +28,7 @@ const Home = () => {
           <FontAwesomeIcon icon={faLocationPin} />
           <p> Close to me</p>
         </button>
-        <button>
+        <button onClick={() => navigate("/allroutes")}>
           <FontAwesomeIcon icon={faMapLocationDot} />
           <p>All routes</p>
         </button>
