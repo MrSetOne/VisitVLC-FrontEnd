@@ -4,10 +4,13 @@ const SiteMarker = ({ place }) => {
   return (
     <Marker position={[place.location.latitude, place.location.longitude]}>
       <Popup>
-        <b>{place.name}</b> <br />
-        <br />
-        {place.description} <br />
-        <button>Review</button>
+        <div className="popup">
+          <b>{place.name}</b> <br />
+          <br />
+          {place.description} <br />
+          <button>Review</button>
+        </div>
+        
       </Popup>
     </Marker>
   );

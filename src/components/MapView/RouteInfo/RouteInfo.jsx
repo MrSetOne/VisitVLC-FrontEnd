@@ -28,7 +28,7 @@ const RouteInfo = ({ data, visibleDrawer, setVisibleDrawer }) => {
 
   return (
     <Drawer
-      title="Basic Drawer"
+      title="Detalles de Ruta"
       placement="right"
       onClose={() => setVisibleDrawer(!visibleDrawer)}
       visible={visibleDrawer}
