@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getAllRoutes } from "../../features/routes/routesSlice";
+import { getAllRoutes } from "../../features/routes/RoutesSlice";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import ShowRoute from "./ShowRoute/ShowRoute";
 
