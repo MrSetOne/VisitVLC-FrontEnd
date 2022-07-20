@@ -2,24 +2,31 @@ import React, {useEffect, useState} from 'react'
 import { MapContainer, TileLayer, useMap, Marker, MarkerProps, Popup } from 'react-leaflet'
 import L, { Icon } from 'leaflet'
 import data from '../../assets/data.json'
+import './MapView.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
-const greenIcon = new L.Icon({
+const redIcon = new L.Icon({
   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  // shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   shadowSize: [41, 41]
 });
 
-const MapSanti = () => {
+const FaMarker = <FontAwesomeIcon icon={faCoffee} />
 
-    const resp = data.map((place) => {
+const MapView = () => {
+
+    const resp = data.map((place, i) => {
         return (
           <Marker position={[place.location.latitude, place.location.longitude]}>
             <Popup>
+              {/* <h2>{`iconodefault-${i}.png`}</h2> */}
                 <b>{place.name}</b> <br/><br/>
-                {place.description}  
+                {place.description} <br />
+                <button>Review</button> 
             </Popup>
           </Marker>
         );
@@ -62,7 +69,7 @@ const MapSanti = () => {
 
   {resp}
 
-  <Marker position={[state.latitude, state.longitude]} icon={greenIcon}>
+  <Marker position={[state.latitude, state.longitude]} icon={redIcon}>
     <Popup>
       Estás Aquí
     </Popup>
@@ -72,4 +79,4 @@ const MapSanti = () => {
   )
 }
 
-export default MapSanti
+export default MapView
