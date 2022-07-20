@@ -3,6 +3,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Map from "./components/Map/Map";
+import MapSanti from "./components/MapSanti/MapSanti";
 import LogPage from "./components/LogPage/LogPage";
 import { useSelector } from "react-redux";
 import "./antd-theme/antd-customized.css";
@@ -19,7 +20,7 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/map" element={<Map />} />
+            <Route path="/map" element={<MapSanti />} />
             <Route path="/profile" element={<MyProfile />} />
           </Routes>
         </>
