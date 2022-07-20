@@ -6,64 +6,72 @@ import {
   faLocationDot,
   faPlaceOfWorship,
   faClock,
-  faChartSimple
+  faChartSimple,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import api from '../../assets/APIExample.json'
+import api from "../../assets/APIExample.json";
+import { Button } from "antd";
 
 const Home = () => {
   const navigate = useNavigate();
 
-  const data = api.map((place)=>{
-    return(
-        <button className="route-btn">
+  console.log(api);
+
+  const data = api.map((place) => {
+    return (
+      <button
+        className="route-btn"
+        style={{ backgroundImage: `url(${place.image})` }}
+      >
+        <div className="route-btn__cover">
           <div className="title">{place.name}</div>
           <div className="data">
             <div className="time">
-            <FontAwesomeIcon icon={faClock} />
-            <p>{place.duration} mins.</p>
+              <FontAwesomeIcon icon={faClock} />
+              <p>{place.duration} mins.</p>
             </div>
             <div className="points">
-            <FontAwesomeIcon icon={faLocationDot} />
-            <p>{place.pois.length} Lugares</p>
+              <FontAwesomeIcon icon={faLocationDot} />
+              <p>{place.pois.length} Lugares</p>
             </div>
             <div className="difficulty">
-            <FontAwesomeIcon icon={faChartSimple} />
-            <p>{place.difficulty}</p>
+              <FontAwesomeIcon icon={faChartSimple} />
+              <p>{place.difficulty}</p>
             </div>
           </div>
-        </button>
-    )
-  })
+        </div>
+      </button>
+    );
+  });
 
   return (
     <div className="Home">
-        
       <div className="tab-menu">
         <label htmlFor="">Cerca de Mi</label>
         <label htmlFor="">Mejor Valoradas</label>
         <label htmlFor="">Favoritas</label>
       </div>
 
-      <div className="content">
-      {data}
-      </div>
+      <div className="content">{data}</div>
 
-      <div className="footer">
-        <button className="footer-btn">
+      <footer className="footer">
+        <Button type="primary" className="footer-btn">
           <FontAwesomeIcon icon={faFilter} />
           <p>Categorias</p>
-        </button>
-        <button className="footer-btn" onClick={() => navigate("/allroutes")}>
+        </Button>
+        <Button
+          type="primary"
+          className="footer-btn"
+          onClick={() => navigate("/allroutes")}
+        >
           <FontAwesomeIcon icon={faMapLocationDot} />
           <p>Todas las Rutas</p>
-        </button>
-        <button className="footer-btn">
+        </Button>
+        <Button type="primary" className="footer-btn">
           <FontAwesomeIcon icon={faPlaceOfWorship} />
           <p>Sitios</p>
-        </button>
-      </div>
-
+        </Button>
+      </footer>
     </div>
   );
 };
