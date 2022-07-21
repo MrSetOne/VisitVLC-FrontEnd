@@ -15,8 +15,6 @@ import { Button } from "antd";
 const Home = () => {
   const navigate = useNavigate();
 
-  console.log(api);
-
   const data = api.map((place) => {
     return (
       <button
