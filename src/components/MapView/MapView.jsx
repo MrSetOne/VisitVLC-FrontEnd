@@ -7,6 +7,7 @@ import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import SiteMarker from "./SiteMarker/SiteMarker";
 import UserPosition from "./UserPosition/UserPosition";
 import RouteInfo from "./RouteInfo/RouteInfo";
+import MapFooter from "./MapFooter/MapFooter";
 
 const MAP_TOKEN = process.env.REACT_APP_MAP_TOKEN;
 
@@ -37,11 +38,12 @@ const MapView = () => {
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url={'https://{s}.tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token='+MAP_TOKEN}
+          url={'https://{s}.tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token=' + MAP_TOKEN}
         />
         {allPlaces}
         <UserPosition />
       </MapContainer>
+      <MapFooter />
     </>
   );
 };

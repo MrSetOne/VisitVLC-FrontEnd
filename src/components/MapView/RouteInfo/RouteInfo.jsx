@@ -2,7 +2,7 @@ import { Drawer, Steps, Typography } from "antd";
 import { useState } from "react";
 
 const RouteInfo = ({ data, visibleDrawer, setVisibleDrawer }) => {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(0); //Necesario para boton puntos
 
   const { Step } = Steps;
   const { Paragraph } = Typography;

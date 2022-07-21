@@ -1,0 +1,26 @@
+.mapFooter{
+    background-color: rgba(197, 186, 186, 0.425);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 9rem;
+    .center-btn{
+        border-radius: 100%;
+        width: 7rem;
+        height: 7rem;
+        border: none;
+        background-color: #ff6000;
+        color: azure;
+        font-size: 35px;
+    }
+    .footer-btns{
+        width: 5.5rem;
+        height: 5.5rem;
+        border-radius: 100%;
+        margin: 4px;
+        border: none;
+        background-color: #ff6000;
+        color: azure;
+        font-size: 20px;
+    }
+}
