@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import SiteMarker from "./SiteMarker/SiteMarker";
 import UserPosition from "./UserPosition/UserPosition";
-import RouteInfo from "./RouteInfo/RouteInfo";
 import MapFooter from "./MapFooter/MapFooter";
 
 const MAP_TOKEN = process.env.REACT_APP_MAP_TOKEN;
@@ -26,11 +25,7 @@ const MapView = () => {
         }}
         onClick={() => setVisibleDrawer(!visibleDrawer)}
       />
-      <RouteInfo
-        data={data}
-        setVisibleDrawer={setVisibleDrawer}
-        visibleDrawer={visibleDrawer}
-      />
+
       <MapContainer
         center={[39.4730789903991, -0.37663455848786936]}
         zoom={14.2}
@@ -43,7 +38,9 @@ const MapView = () => {
         {allPlaces}
         <UserPosition />
       </MapContainer>
-      <MapFooter />
+      <MapFooter data={data}
+        setVisibleDrawer={setVisibleDrawer}
+        visibleDrawer={visibleDrawer}/>
     </>
   );
 };
