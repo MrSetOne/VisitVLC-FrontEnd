@@ -11,11 +11,13 @@ import {
 import { useNavigate } from "react-router-dom";
 import api from "../../assets/APIExample.json";
 import { Button } from "antd";
+import { useState } from "react";
+import AIForm from "./AIForm/AIForm";
 
 const Home = () => {
   const navigate = useNavigate();
 
-  console.log(api);
+  const [modalAIVisible, setModalAIVisible] = useState(false);
 
   const data = api.map((place) => {
     return (
@@ -51,9 +53,12 @@ const Home = () => {
         <label htmlFor="">Mejor Valoradas</label>
         <label htmlFor="">Favoritas</label>
       </div>
-
-      <div className="content">{data}</div>
-
+      <div className="content">
+        <Button type="primary" onClick={() => setModalAIVisible(true)}>
+          Push me
+        </Button>
+        {data}
+      </div>
       <footer className="footer">
         <Button type="primary" className="footer-btn">
           <FontAwesomeIcon icon={faFilter} />
@@ -72,6 +77,10 @@ const Home = () => {
           <p>Sitios</p>
         </Button>
       </footer>
+      <AIForm
+        modalAIVisible={modalAIVisible}
+        setModalAIVisible={setModalAIVisible}
+      />
     </div>
   );
 };

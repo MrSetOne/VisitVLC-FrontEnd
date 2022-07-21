@@ -23,7 +23,9 @@ const login = async(data) => {
 }
 
 const signUp = async(data) => {
+    console.log(data)
     const res = await axios.post(`${API_URL}/users`, data)
+    console.log(res)
     return (res.data)
 }
 

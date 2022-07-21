@@ -7,4 +7,12 @@
         display: flex;
         justify-content: space-between;
     }
+    .Signup__Form {
+        >div {
+            margin-bottom: 1rem;
+            >div {
+                padding: 0;
+            }
+        }
+    }
 }

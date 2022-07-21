@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { Form, Button, notification } from "antd";
-import StepOne from "./StepOne/StepOne";
+import { Form, Button, notification, Input } from "antd";
 import "./Signup.scss";
-import StepTwo from "./StepTwo/StepTwo";
 import { signUp, resetNotifications } from "../../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -21,19 +19,15 @@ const Signup = ({ setNeedsignup }) => {
     confirm: "",
   };
 
-  const [step, setStep] = useState(1);
   const [data, setData] = useState(dataInit);
 
   const dispatch = useDispatch();
   const [form] = Form.useForm();
 
-  const onFinish = (values) => {
-    if (step === 1) {
-      setData({ ...values });
-      setStep(2);
-    } else {
-      dispatch(signUp({ ...data, ...values }));
-    }
+  const onFinish = async (values) => {
+    console.log(values);
+    form.resetFields();
+    await dispatch(signUp({ ...values }));
   };
 
   useEffect(() => {
@@ -63,18 +57,86 @@ const Signup = ({ setNeedsignup }) => {
           remember: false,
         }}
       >
-        {step === 1 ? <StepOne data={data} /> : <StepTwo />}{" "}
+        <Form.Item
+          label="Nombre"
+          name="firstName"
+          rules={[
+            {
+              required: true,
+              message: "Introduce tu nombre",
+            },
+          ]}
+        >
+          <Input placeholder="Tu nombre" />
+        </Form.Item>
+        <Form.Item
+          label="Apellido"
+          name="lastName"
+          rules={[
+            {
+              required: true,
+              message: "Introduce tu apellido",
+            },
+          ]}
+        >
+          <Input placeholder="Tu apellido" />
+        </Form.Item>
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            {
+              required: true,
+              type: "email",
+              message: "Introduce un email valido",
+            },
+          ]}
+        >
+          <Input placeholder="tu@email.com" />
+        </Form.Item>
+        <Form.Item
+          name="password"
+          label="Contraseña"
+          rules={[
+            {
+              required: true,
+              message: "Introduce tu contraseña",
+            },
+          ]}
+          hasFeedback
+        >
+          <Input.Password placeholder="Tu contraseña" />
+        </Form.Item>
+        <Form.Item
+          name="confirm"
+          label="Confirma tu contraseña"
+          dependencies={["password"]}
+          hasFeedback
+          rules={[
+            {
+              required: true,
+              message: "Confirma tu contraseña",
+            },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  new Error("Las dos contraseñas tienen que ser iguales")
+                );
+              },
+            }),
+          ]}
+        >
+          <Input.Password placeholder="Confirma tu contraseña" />
+        </Form.Item>
+
         <Form.Item noStyle>
           <nav>
-            <Button
-              onClick={
-                step === 1 ? () => setNeedsignup(false) : () => setStep(1)
-              }
-            >
-              Go Back
-            </Button>
+            <Button onClick={() => setNeedsignup(false)}>Iniciar sesión</Button>
             <Button htmlType="submit" type="primary" loading={isLoading}>
-              {step === 1 ? "Next" : "Submit"}
+              Crear usuario
             </Button>
           </nav>
         </Form.Item>
