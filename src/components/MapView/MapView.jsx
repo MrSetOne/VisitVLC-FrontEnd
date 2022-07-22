@@ -6,12 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import SiteMarker from "./SiteMarker/SiteMarker";
 import UserPosition from "./UserPosition/UserPosition";
-import RouteInfo from "./RouteInfo/RouteInfo";
+import MapFooter from "./MapFooter/MapFooter";
+
+const MAP_TOKEN = process.env.REACT_APP_MAP_TOKEN;
 
 const MapView = () => {
   const [visibleDrawer, setVisibleDrawer] = useState(false);
 
-  const allPlaces = data.map((place) => <SiteMarker place={place} />);
+  const allPlaces = data.map((place, i) => <SiteMarker place={place} i={i} />);
 
   return (
     <>
@@ -23,23 +25,22 @@ const MapView = () => {
         }}
         onClick={() => setVisibleDrawer(!visibleDrawer)}
       />
-      <RouteInfo
-        data={data}
-        setVisibleDrawer={setVisibleDrawer}
-        visibleDrawer={visibleDrawer}
-      />
+
       <MapContainer
         center={[39.4730789903991, -0.37663455848786936]}
-        zoom={13}
+        zoom={14.2}
         scrollWheelZoom={true}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url={'https://{s}.tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token=' + MAP_TOKEN}
         />
         {allPlaces}
         <UserPosition />
       </MapContainer>
+      <MapFooter data={data}
+        setVisibleDrawer={setVisibleDrawer}
+        visibleDrawer={visibleDrawer}/>
     </>
   );
 };

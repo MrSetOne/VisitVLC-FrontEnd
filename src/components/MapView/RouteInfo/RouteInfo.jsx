@@ -1,14 +1,12 @@
 import { Drawer, Steps, Typography } from "antd";
-import { useState } from "react";
 
-const RouteInfo = ({ data, visibleDrawer, setVisibleDrawer }) => {
-  const [current, setCurrent] = useState(0);
+const RouteInfo = ({ data, visibleDrawer, setVisibleDrawer, current, setCurrent}) => {
 
   const { Step } = Steps;
   const { Paragraph } = Typography;
 
   const onChange = (value) => {
-    setCurrent(value);
+    setCurrent(value)
   };
 
   const allSteps = data.map((site) => {
@@ -28,7 +26,7 @@ const RouteInfo = ({ data, visibleDrawer, setVisibleDrawer }) => {
 
   return (
     <Drawer
-      title="Basic Drawer"
+      title="Detalles de Ruta"
       placement="right"
       onClose={() => setVisibleDrawer(!visibleDrawer)}
       visible={visibleDrawer}

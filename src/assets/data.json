@@ -1,6 +1,7 @@
 [
         {
             "description": "Una de las paradas mas transitadas de la ciudad Valencia ",
+            "id": 2,
             "name": "Metro Colón",
             "location": {
                 "latitude": 39.47019720412093,
@@ -12,6 +13,7 @@
         {
             "description": "Puente del siglo XV que ha sido reconstruido en varias ocasiones a lo largo de su historia. Actualmente es solo de acceso peatonal. Bonitas esculturas de San Pascual Bailón y la Virgen de los Desamparados, ambas reconstruidas en los años 40.",
             "name": "Plaza de la Reina",
+            "id": 3,
             "location": {
                 "latitude": 39.47489129999889,
                 "longitude": -0.3743574445835548
@@ -21,6 +23,7 @@
         {
             "description": "Pareja de torres góticas defensivas, del siglo XV, que formaban parte de la muralla de la ciudad de Valencia.",
             "name": "Torres de Quart",
+            "id": 5,
             "location": {
                 "latitude": 39.476155518408966,
                 "longitude": -0.38281142795324763
@@ -28,6 +31,7 @@
         },
         {
             "description": "El concurrido barrio de El Carme es una zona del casco antiguo donde se encuentran las Torres de Serranos y las de Quart, antiguas puertas medievales que formaban parte de las murallas de la ciudad. Sus callejuelas contienen cafeterías, bares de tapas, boutiques de moda y tiendas de recuerdos. Las terrazas y las pistas de baile de sus numerosos bares nocturnos están siempre a rebosar. Entre los museos se incluyen el Instituto Valenciano de Arte Moderno, donde se exponen obras de artistas internacionales del siglo XX. ",
+            "id": 7,
             "name": "El Carmen",
             "location": {
                 "latitude": 39.47946883157968, 
@@ -36,6 +40,7 @@
         },
         {
             "description": "Gran plaza de toros del siglo XIX que aún se utiliza para corridas, con museo y visitas guiadas.",
+            "id": 1,
             "name": "Plaza de Toros de Valencia",
             "location": {
                 "latitude": 39.46657930572367,  
@@ -44,6 +49,7 @@
         },
         {
             "description": "Grandioso edificio, con elaboradas tallas de piedra, testimonio de la riqueza medieval de la ciudad.",
+            "id": 4,
             "name": "La Lonja de la Seda",
             "location": {
                 "latitude": 39.47457584923109,  
@@ -52,6 +58,7 @@
         },
         {
             "description": "Museo con piezas ibéricas desde la Edad de Piedra hasta la época romana, extraídas en la región de Valencia.",
+            "id": 6,
             "name": "Museo de Prehistoria de Valencia",
             "location": {
                 "latitude": 39.4786880464082,  
