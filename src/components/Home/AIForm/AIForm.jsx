@@ -1,4 +1,9 @@
-import { Modal, Form, Radio, Space } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
+import { Modal, Form, Radio, Space, Button } from "antd";
 import React, { useState } from "react";
 
 const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
@@ -115,7 +120,19 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
           remember: false,
         }}
       >
-        <div>{questions[1]}</div>
+        <div>
+          <Button
+            shape="circle"
+            type="primary"
+            icon={<FontAwesomeIcon icon={faChevronLeft} />}
+          />
+          {questions[1]}
+          <Button
+            shape="circle"
+            type="primary"
+            icon={<FontAwesomeIcon icon={faChevronRight} />}
+          />
+        </div>
       </Form>
     </Modal>
   );
