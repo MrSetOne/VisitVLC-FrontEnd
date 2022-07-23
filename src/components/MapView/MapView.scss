@@ -1,6 +1,11 @@
-.leaflet-container {
-    width: 100vw;
+.map__fullContainer {
     height: calc(100vh - 5rem);
+    overflow: hidden;
+}
+
+.leaflet-container {
+    height: 100%;
+    width: 100vw;
 }
 
 .info__icon {

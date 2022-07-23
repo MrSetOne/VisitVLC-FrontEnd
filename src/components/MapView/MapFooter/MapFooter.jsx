@@ -18,13 +18,15 @@ const MapFooter = ({
   visibleDrawer,
   visibleFooter,
   setVisibleFooter,
+  setCurrent,
+  current,
 }) => {
-  const [current, setCurrent] = useState(0);
-
   return (
     <motion.div
       className="mapFooter"
-      animate={{ y: visibleFooter ? -150 : 0, zIndex: 1001 }}
+      // animate={{
+      //   y: visibleFooter ? 30 : 180,
+      // }}
     >
       <FontAwesomeIcon
         className="footer__back"
@@ -56,13 +58,6 @@ const MapFooter = ({
           <FontAwesomeIcon icon={faStar} />
         </button>
       </div>
-      <RouteInfo
-        current={current}
-        setCurrent={setCurrent}
-        data={data}
-        visibleDrawer={visibleDrawer}
-        setVisibleDrawer={setVisibleDrawer}
-      />
     </motion.div>
   );
 };

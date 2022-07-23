@@ -9,14 +9,17 @@ import {
   faChartSimple,
 } from "@fortawesome/free-solid-svg-icons";
 import "./HighRatedItem.scss";
+import { useNavigate } from "react-router-dom";
 
 const HighRatedItem = ({ item }) => {
+  const navigate = useNavigate();
   console.log(item);
 
   return (
     <button
       className="HighRatedItem"
       style={{ backgroundImage: `url(${item.image})` }}
+      onClick={() => navigate(`/route/${item.route_id}`)}
     >
       <div className="route-btn__cover">
         <div className="title">{item.name}</div>
