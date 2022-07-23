@@ -4,12 +4,23 @@ import routesService from './routesService'
 
 const initialState = {
     allRoutes: [],
+    highRated: [],
     isLoadingAllRoutes: true,
+    isLoadingHighRated: true,
+
 }
 
 export const getAllRoutes = createAsyncThunk('routes/getAllRoutes', async(thunkAPI) => {
     try {
         return await routesService.getAllRoutes()
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data)
+    }
+})
+
+export const getHighRatedRoutes = createAsyncThunk('routes/getHighRatedRoutes', async(thunkAPI) => {
+    try {
+        return await routesService.getHighRatedRoutes()
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data)
     }
@@ -38,6 +49,13 @@ export const routesSlice = createSlice({
             })
             .addCase(getAllRoutes.rejected, (state, action) => {
                 state.isLoadingAllRoutes = false
+            })
+            .addCase(getHighRatedRoutes.pending, (state) => {
+                state.isLoadingHighRated = true
+            })
+            .addCase(getHighRatedRoutes.fulfilled, (state, action) => {
+                state.highRated = action.payload
+                state.isLoadingHighRated = false
             })
 
         // builder

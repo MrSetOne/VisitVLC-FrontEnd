@@ -12,40 +12,13 @@ import { useNavigate } from "react-router-dom";
 import api from "../../assets/APIExample.json";
 import { Button } from "antd";
 import { useState } from "react";
-import AIForm from "./AIForm/AIForm";
+import AIForm from "./HighRated/AIForm/AIForm";
 import { motion } from "framer-motion";
+import HighRated from "./HighRated/HighRated";
+import FavRoutes from "./FavRoutes/FavRoutes";
 
 const Home = () => {
   const navigate = useNavigate();
-
-  const [modalAIVisible, setModalAIVisible] = useState(false);
-
-  const data = api.map((place) => {
-    return (
-      <button
-        className="route-btn"
-        style={{ backgroundImage: `url(${place.image})` }}
-      >
-        <div className="route-btn__cover">
-          <div className="title">{place.name}</div>
-          <div className="data">
-            <div className="time">
-              <FontAwesomeIcon icon={faClock} />
-              <p>{place.duration} mins.</p>
-            </div>
-            <div className="points">
-              <FontAwesomeIcon icon={faLocationDot} />
-              <p>{place.pois.length} Lugares</p>
-            </div>
-            <div className="difficulty">
-              <FontAwesomeIcon icon={faChartSimple} />
-              <p>{place.difficulty}</p>
-            </div>
-          </div>
-        </div>
-      </button>
-    );
-  });
 
   const [tabBar, setTabBar] = useState({
     width: 120,
@@ -53,58 +26,44 @@ const Home = () => {
     left: "50%",
   });
 
+  const [content, setContent] = useState(<HighRated />);
+
+  const goto = (dest) => {
+    if (dest === "HighRated") {
+      setContent(<HighRated />);
+      setTabBar({
+        width: 120,
+        translateX: "calc(-50% + 10px)",
+        left: "50%",
+      });
+    } else if (dest === "FavRoutes") {
+      setContent(<FavRoutes />);
+      setTabBar({ width: 65, left: "calc(100% - 95px)" });
+    }
+  };
+
   return (
     <div className="Home">
       <div className="tab-menu">
         <button onClick={() => setTabBar({ width: 85, left: 0 + 30 })}>
           Cerca de Mi
         </button>
-        <button
-          onClick={() =>
-            setTabBar({
-              width: 120,
-              translateX: "calc(-50% + 10px)",
-              left: "50%",
-            })
-          }
-        >
-          Mejor Valoradas
-        </button>
-        <button
-          onClick={() => setTabBar({ width: 65, left: "calc(100% - 95px)" })}
-        >
-          Favoritas
-        </button>
+        <button onClick={() => goto("HighRated")}>Mejor Valoradas</button>
+        <button onClick={() => goto("FavRoutes")}>Favoritas</button>
         <motion.div className="tab-menu__tab" animate={tabBar} />
       </div>
-      <div className="content">
-        <Button type="primary" onClick={() => setModalAIVisible(true)}>
-          Push me
-        </Button>
-        {data}
-      </div>
+      <div className="content">{content}</div>
       <footer className="footer">
-        <Button type="primary" className="footer-btn">
+        <button className="footer-btn">
           <FontAwesomeIcon icon={faFilter} />
-          <p>Categorias</p>
-        </Button>
-        <Button
-          type="primary"
-          className="footer-btn"
-          onClick={() => navigate("/allroutes")}
-        >
+        </button>
+        <button className="footer-btn" onClick={() => navigate("/allroutes")}>
           <FontAwesomeIcon icon={faMapLocationDot} />
-          <p>Todas las Rutas</p>
-        </Button>
-        <Button type="primary" className="footer-btn">
+        </button>
+        <button className="footer-btn">
           <FontAwesomeIcon icon={faPlaceOfWorship} />
-          <p>Sitios</p>
-        </Button>
+        </button>
       </footer>
-      <AIForm
-        modalAIVisible={modalAIVisible}
-        setModalAIVisible={setModalAIVisible}
-      />
     </div>
   );
 };
