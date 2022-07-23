@@ -34,7 +34,7 @@ export const routesSlice = createSlice({
             })
             .addCase(getAllRoutes.fulfilled, (state, action) => {
                 state.isLoadingAllRoutes = false
-                state.allRoutes = action.payload
+                state.allRoutes = action.payload.routesWithEvaluation
             })
             .addCase(getAllRoutes.rejected, (state, action) => {
                 state.isLoadingAllRoutes = false
