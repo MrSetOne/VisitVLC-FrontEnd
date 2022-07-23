@@ -13,6 +13,7 @@ import api from "../../assets/APIExample.json";
 import { Button } from "antd";
 import { useState } from "react";
 import AIForm from "./AIForm/AIForm";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -46,12 +47,35 @@ const Home = () => {
     );
   });
 
+  const [tabBar, setTabBar] = useState({
+    width: 120,
+    translateX: "calc(-50% + 10px)",
+    left: "50%",
+  });
+
   return (
     <div className="Home">
       <div className="tab-menu">
-        <label htmlFor="">Cerca de Mi</label>
-        <label htmlFor="">Mejor Valoradas</label>
-        <label htmlFor="">Favoritas</label>
+        <button onClick={() => setTabBar({ width: 85, left: 0 + 30 })}>
+          Cerca de Mi
+        </button>
+        <button
+          onClick={() =>
+            setTabBar({
+              width: 120,
+              translateX: "calc(-50% + 10px)",
+              left: "50%",
+            })
+          }
+        >
+          Mejor Valoradas
+        </button>
+        <button
+          onClick={() => setTabBar({ width: 65, left: "calc(100% - 95px)" })}
+        >
+          Favoritas
+        </button>
+        <motion.div className="tab-menu__tab" animate={tabBar} />
       </div>
       <div className="content">
         <Button type="primary" onClick={() => setModalAIVisible(true)}>

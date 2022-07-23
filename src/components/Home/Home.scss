@@ -6,14 +6,24 @@
     .tab-menu {
         background-color: #ff6000;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
+        padding: 0 3rem;
         color: white;
         align-items: center;
         height: 3.5rem;
         width: 100%;
         z-index: 2;
-        label {
+        position: relative;
+        .tab-menu__tab {
+            height: .5rem;
+            background-color: white;
+            position: absolute;
+            bottom: .1rem;
+        }
+        button {
             font-size: 1.6rem;
+            background-color: transparent;
+            border: none;
         }
     }
     .content {
