@@ -43,10 +43,21 @@ const logOut = async() => {
     return (res.data)
 }
 
+const getFavoritesRoutes = async()=>{
+    const token = JSON.parse(localStorage.getItem("token"));
+    const res = await axios.get(`${API_URL}/users/favoriteRoutes`,{
+        headers: {
+            authorization: token ? token : null
+        },
+    })
+    return (res.data)
+}
+
 const authService = {
     login,
     signUp,
-    logOut
+    logOut,
+    getFavoritesRoutes
 }
 
 export default authService
