@@ -1,12 +1,19 @@
 import { Drawer, Steps, Typography } from "antd";
 
-const RouteInfo = ({ data, visibleDrawer, setVisibleDrawer, current, setCurrent}) => {
+const RouteInfo = ({
+  data,
+  visibleDrawer,
+  setVisibleDrawer,
+  current,
+  setCurrent,
+}) => {
+  console.log(data);
 
   const { Step } = Steps;
   const { Paragraph } = Typography;
 
   const onChange = (value) => {
-    setCurrent(value)
+    setCurrent(value);
   };
 
   const allSteps = data.map((site) => {
@@ -17,7 +24,7 @@ const RouteInfo = ({ data, visibleDrawer, setVisibleDrawer, current, setCurrent}
           <Paragraph
             ellipsis={{ rows: 2, expandable: true, symbol: "leer más..." }}
           >
-            {site.description}
+            {site.description_es}
           </Paragraph>
         }
       />

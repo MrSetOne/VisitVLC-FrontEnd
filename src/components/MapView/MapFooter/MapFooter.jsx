@@ -9,15 +9,18 @@ import {
   faCaretRight,
   faCircleInfo,
   faHeartCirclePlus,
+  faCircleCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import "./MapFooter.scss";
 import { motion } from "framer-motion";
 import { Button } from "antd";
 import ModalSiteDetail from "../ModalSiteDetail/ModalSiteDetail";
-import data from "../../../assets/data.json";
+import { useSelector } from "react-redux";
 
 const MapFooter = ({ setVisibleFooter, setCurrent, current, routeLength }) => {
   const [visibleModalDetail, setVisibleModalDetail] = useState(false);
+
+  const { routeDetail } = useSelector((state) => state.routes);
 
   return (
     <>
@@ -65,12 +68,12 @@ const MapFooter = ({ setVisibleFooter, setCurrent, current, routeLength }) => {
             <div className="svg-text">
               <FontAwesomeIcon
                 icon={
-                  routeLength === current + 1
-                    ? faCircleChevronDown
+                  routeDetail.poi.length === current + 1
+                    ? faCircleCheck
                     : faCaretRight
                 }
                 onClick={
-                  routeLength === current + 1
+                  routeDetail.poi.length === current + 1
                     ? () => console.log("Aqui lanzamos formulario de opinion")
                     : () => setCurrent(current + 1)
                 }
@@ -95,7 +98,7 @@ const MapFooter = ({ setVisibleFooter, setCurrent, current, routeLength }) => {
       <ModalSiteDetail
         visibleModalDetail={visibleModalDetail}
         setVisibleModalDetail={setVisibleModalDetail}
-        place={data[current]}
+        place={routeDetail.poi[current]}
       />
     </>
   );

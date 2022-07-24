@@ -23,7 +23,7 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/map" element={<MapView />} />
+            <Route path="/map/:id" element={<MapView />} />
             <Route path="/profile" element={<MyProfile />} />
             <Route path="/allroutes" element={<ShowRoutes />} />
             <Route path="/route/:id" element={<RouteDetail />} />
