@@ -16,7 +16,7 @@ const initialState = {
     favoriteRoutes: []
 }
 
-export const logIn = createAsyncThunk('auth/login', async (data, thunkAPI) => {
+export const logIn = createAsyncThunk('auth/login', async(data, thunkAPI) => {
     try {
         return await authService.login(data)
     } catch (error) {
@@ -24,7 +24,7 @@ export const logIn = createAsyncThunk('auth/login', async (data, thunkAPI) => {
     }
 })
 
-export const signUp = createAsyncThunk('auth/signup', async (data, thunkAPI) => {
+export const signUp = createAsyncThunk('auth/signup', async(data, thunkAPI) => {
     try {
         console.log(data)
         return await authService.signUp(data)
@@ -33,7 +33,7 @@ export const signUp = createAsyncThunk('auth/signup', async (data, thunkAPI) => 
     }
 })
 
-export const logOut = createAsyncThunk('auth/logout', async (data, thunkAPI) => {
+export const logOut = createAsyncThunk('auth/logout', async(data, thunkAPI) => {
     try {
         return await authService.logOut()
     } catch (error) {
@@ -41,7 +41,7 @@ export const logOut = createAsyncThunk('auth/logout', async (data, thunkAPI) => 
     }
 })
 
-export const getFavoritesRoutes = createAsyncThunk("auth/getFavoritesRoutes", async (thunkAPI) => {
+export const getFavoritesRoutes = createAsyncThunk("auth/getFavoritesRoutes", async(thunkAPI) => {
     try {
         return await authService.getFavoritesRoutes()
     } catch (error) {
@@ -67,10 +67,11 @@ export const authSlice = createSlice({
             })
             .addCase(logIn.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.user = action.payload.user;
+                state.user = {...action.payload.user };
                 state.token = action.payload.token;
                 state.notification = action.payload.message;
                 state.isSucces = true;
+                state.favoriteRoutes = action.payload.favoriteRoutes
             })
             .addCase(logIn.rejected, (state, action) => {
                 state.isError = true;
