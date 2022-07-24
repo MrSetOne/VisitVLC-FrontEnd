@@ -67,13 +67,10 @@ const MapView = () => {
         setVisibleDrawer={setVisibleDrawer}
       />
       <MapFooter
-        data={data}
-        setVisibleDrawer={setVisibleDrawer}
-        visibleDrawer={visibleDrawer}
-        visibleFooter={visibleFooter}
         setVisibleFooter={setVisibleFooter}
         setCurrent={setCurrent}
         current={current}
+        routeLength={data.length}
       />
     </div>
   );

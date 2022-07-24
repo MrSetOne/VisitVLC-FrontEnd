@@ -2,17 +2,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Home.scss";
 import {
   faMapLocationDot,
-  faFilter,
-  faLocationDot,
   faPlaceOfWorship,
-  faClock,
-  faChartSimple,
+  faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import api from "../../assets/APIExample.json";
-import { Button } from "antd";
 import { useState } from "react";
-import AIForm from "./HighRated/AIForm/AIForm";
 import { motion } from "framer-motion";
 import HighRated from "./HighRated/HighRated";
 import FavRoutes from "./FavRoutes/FavRoutes";
@@ -45,8 +39,8 @@ const Home = () => {
   return (
     <div className="Home">
       <div className="tab-menu">
-        <button onClick={() => setTabBar({ width: 85, left: 0 + 30 })}>
-          Cerca de Mi
+        <button onClick={() => setTabBar({ width: 76, left: 0 + 30 })}>
+          Categorias
         </button>
         <button onClick={() => goto("HighRated")}>Mejor Valoradas</button>
         <button onClick={() => goto("FavRoutes")}>Favoritas</button>
@@ -55,7 +49,7 @@ const Home = () => {
       <div className="content">{content}</div>
       <footer className="footer">
         <button className="footer-btn">
-          <FontAwesomeIcon icon={faFilter} />
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
         <button className="footer-btn" onClick={() => navigate("/allroutes")}>
           <FontAwesomeIcon icon={faMapLocationDot} />
