@@ -83,6 +83,9 @@ export const routesSlice = createSlice({
                 state.isLoadingRouteDetail = false
                 state.routeDetail = {...action.payload.route, evaluations: action.payload.evaluations, averageScore: action.payload.averageScore }
             })
+            .addCase(filterRoute.pending, (state) => {
+                state.filteredRoutes = []
+            })
             .addCase(filterRoute.fulfilled, (state, action) => {
                 state.filteredRoutes = action.payload
             })

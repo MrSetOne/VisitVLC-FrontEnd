@@ -15,8 +15,8 @@ const Home = () => {
   const navigate = useNavigate();
 
   const [tabBar, setTabBar] = useState({
-    width: 120,
-    translateX: "calc(-50% + 10px)",
+    width: 113,
+    translateX: "calc(-50% + 6px)",
     left: "50%",
   });
 
@@ -26,8 +26,8 @@ const Home = () => {
     if (dest === "HighRated") {
       setContent(<HighRated />);
       setTabBar({
-        width: 120,
-        translateX: "calc(-50% + 10px)",
+        width: 113,
+        translateX: "calc(-50% + 6px)",
         left: "50%",
       });
     } else if (dest === "FavRoutes") {
@@ -49,13 +49,15 @@ const Home = () => {
       <div className="content">{content}</div>
       <footer className="footer">
         <button className="footer-btn">
-          <FontAwesomeIcon icon={faMagnifyingGlass} onClick={() => navigate("/search")}/>
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            onClick={() => navigate("/search")}
+          />
+          Buscar
         </button>
         <button className="footer-btn" onClick={() => navigate("/allroutes")}>
           <FontAwesomeIcon icon={faMapLocationDot} />
-        </button>
-        <button className="footer-btn">
-          <FontAwesomeIcon icon={faPlaceOfWorship} />
+          Todas las rutas
         </button>
       </footer>
     </div>

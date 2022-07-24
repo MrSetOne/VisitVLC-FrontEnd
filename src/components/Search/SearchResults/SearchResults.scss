@@ -1,0 +1,33 @@
+.SearchResults {
+    background-color: white;
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border: none;
+    h3 {
+        flex: 1;
+        padding: .2rem .5rem;
+        font-size: 1.6rem;
+        text-align: center;
+    }
+    img {
+        width: 100%;
+        aspect-ratio: 1.5/1;
+        object-fit: cover;
+    }
+    >div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 1rem;
+        * {
+            color: #979797;
+        }
+        >div {
+            justify-self: center;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+    }
+}
