@@ -18,7 +18,7 @@ const ShowRoutes = () => {
 
   return (
     <section className="ShowRoutes">
-      {isLoadingAllRoutes ? <h1>Aqui se ven las rutas</h1> : show}
+      {isLoadingAllRoutes ? <h1>Cargando...</h1> : show}
     </section>
   );
 };

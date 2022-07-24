@@ -12,10 +12,11 @@ const initialState = {
     isSucces: false,
     isSuccesLogOut: false,
     isError: false,
-    notification: ""
+    notification: "",
+    favoriteRoutes: []
 }
 
-export const logIn = createAsyncThunk('auth/login', async(data, thunkAPI) => {
+export const logIn = createAsyncThunk('auth/login', async (data, thunkAPI) => {
     try {
         return await authService.login(data)
     } catch (error) {
@@ -23,7 +24,7 @@ export const logIn = createAsyncThunk('auth/login', async(data, thunkAPI) => {
     }
 })
 
-export const signUp = createAsyncThunk('auth/signup', async(data, thunkAPI) => {
+export const signUp = createAsyncThunk('auth/signup', async (data, thunkAPI) => {
     try {
         console.log(data)
         return await authService.signUp(data)
@@ -32,9 +33,17 @@ export const signUp = createAsyncThunk('auth/signup', async(data, thunkAPI) => {
     }
 })
 
-export const logOut = createAsyncThunk('auth/logout', async(data, thunkAPI) => {
+export const logOut = createAsyncThunk('auth/logout', async (data, thunkAPI) => {
     try {
         return await authService.logOut()
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data)
+    }
+})
+
+export const getFavoritesRoutes = createAsyncThunk("auth/getFavoritesRoutes", async (thunkAPI) => {
+    try {
+        return await authService.getFavoritesRoutes()
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data)
     }
@@ -96,6 +105,10 @@ export const authSlice = createSlice({
                 console.log(action)
                 state.isLoading = false
                 state.isError = true
+            })
+            .addCase(getFavoritesRoutes.fulfilled, (state, action) => {
+                console.log(action)
+                state.favoriteRoutes = action.payload
             })
     },
 })

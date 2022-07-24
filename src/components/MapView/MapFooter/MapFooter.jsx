@@ -1,64 +1,103 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowRightLong,
-  faArrowLeftLong,
-  faRoute,
   faCircleChevronDown,
   faStar,
   faChevronDown,
+  faHandPointLeft,
+  faCaretLeft,
+  faCaretRight,
+  faCircleInfo,
+  faHeartCirclePlus,
 } from "@fortawesome/free-solid-svg-icons";
 import "./MapFooter.scss";
-import RouteInfo from "../RouteInfo/RouteInfo";
 import { motion } from "framer-motion";
+import { Button } from "antd";
+import ModalSiteDetail from "../ModalSiteDetail/ModalSiteDetail";
+import data from "../../../assets/data.json";
 
-const MapFooter = ({
-  data,
-  setVisibleDrawer,
-  visibleDrawer,
-  visibleFooter,
-  setVisibleFooter,
-  setCurrent,
-  current,
-}) => {
+const MapFooter = ({ setVisibleFooter, setCurrent, current, routeLength }) => {
+  const [visibleModalDetail, setVisibleModalDetail] = useState(false);
+
   return (
-    <motion.div
-      className="mapFooter"
-      // animate={{
-      //   y: visibleFooter ? 30 : 180,
-      // }}
-    >
-      <FontAwesomeIcon
-        className="footer__back"
-        icon={faChevronDown}
-        onClick={() => setVisibleFooter(false)}
-      />
-      <div>
-        <button className="footer-btns">
-          <FontAwesomeIcon icon={faRoute} />
-        </button>
-        <button className="footer-btns">
-          <FontAwesomeIcon
-            icon={faArrowLeftLong}
-            onClick={() => setCurrent(current - 1)}
-          />
-        </button>
-        <button className="center-btn">
-          <FontAwesomeIcon icon={faCircleChevronDown} />
-        </button>
-        <button className="footer-btns">
-          <div className="svg-text">
+    <>
+      <motion.div className="mapFooter">
+        <FontAwesomeIcon
+          className="footer__back"
+          icon={faChevronDown}
+          onClick={() => setVisibleFooter(false)}
+        />
+        <div className="footer__Menu">
+          <Button
+            className="footer-btns"
+            type="primary"
+            shape="circle"
+            size="large"
+          >
+            <FontAwesomeIcon icon={faHandPointLeft} />
+            {/* ESTE BOTON TE TIENE QUE LLEVAR A LA VISTA DE ROUTE DETAIL */}
+          </Button>
+          <Button
+            className="footer-btns"
+            type="primary"
+            shape="circle"
+            size="large"
+            disabled={current === 0}
+          >
             <FontAwesomeIcon
-              icon={faArrowRightLong}
-              onClick={() => setCurrent(current + 1)}
+              icon={faCaretLeft}
+              onClick={current === 0 ? null : () => setCurrent(current - 1)}
             />
-          </div>
-        </button>
-        <button className="footer-btns">
-          <FontAwesomeIcon icon={faStar} />
-        </button>
-      </div>
-    </motion.div>
+          </Button>
+          <motion.button
+            className="center-btn"
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setVisibleModalDetail(true)}
+          >
+            <FontAwesomeIcon icon={faCircleInfo} />
+          </motion.button>
+          <Button
+            type="primary"
+            shape="circle"
+            size="large"
+            className="footer-btns"
+          >
+            <div className="svg-text">
+              <FontAwesomeIcon
+                icon={
+                  routeLength === current + 1
+                    ? faCircleChevronDown
+                    : faCaretRight
+                }
+                onClick={
+                  routeLength === current + 1
+                    ? () => console.log("Aqui lanzamos formulario de opinion")
+                    : () => setCurrent(current + 1)
+                }
+              />
+            </div>
+          </Button>
+          <Button
+            type="primary"
+            shape="circle"
+            size="large"
+            className="footer-btns"
+            onClick={() =>
+              console.log(
+                "Aqui lanzamos una req para añadir a favoritos o quitarla"
+              )
+            }
+          >
+            <FontAwesomeIcon icon={faHeartCirclePlus} />
+          </Button>
+        </div>
+      </motion.div>
+      <ModalSiteDetail
+        visibleModalDetail={visibleModalDetail}
+        setVisibleModalDetail={setVisibleModalDetail}
+        place={data[current]}
+      />
+    </>
   );
 };
 

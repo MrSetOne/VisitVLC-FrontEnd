@@ -28,29 +28,31 @@ const SiteMarker = ({ place, i, current }) => {
         )}${placeholder}`;
 
   return (
-    <Marker
-      position={[place.location.latitude, place.location.longitude]}
-      icon={Icon}
-    >
-      <Popup>
-        <div className="siteMarker-popup">
-          <h2>{place.name}</h2>
-          <p>{truncateAfterWord(place.description, 83)}</p>
-          <Button
-            type="primary"
-            block
-            onClick={() => setVisibleModalDetail(true)}
-          >
-            Más Info
-          </Button>
-        </div>
-        <ModalSiteDetail
-          visibleModalDetail={visibleModalDetail}
-          setVisibleModalDetail={setVisibleModalDetail}
-          place={place}
-        />
-      </Popup>
-    </Marker>
+    <>
+      <Marker
+        position={[place.location.latitude, place.location.longitude]}
+        icon={Icon}
+      >
+        <Popup>
+          <div className="siteMarker-popup">
+            <h2>{place.name}</h2>
+            <p>{truncateAfterWord(place.description, 83)}</p>
+            <Button
+              type="primary"
+              block
+              onClick={() => setVisibleModalDetail(true)}
+            >
+              Más Info
+            </Button>
+          </div>
+        </Popup>
+      </Marker>
+      <ModalSiteDetail
+        visibleModalDetail={visibleModalDetail}
+        setVisibleModalDetail={setVisibleModalDetail}
+        place={place}
+      />
+    </>
   );
 };
 

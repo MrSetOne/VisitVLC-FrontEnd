@@ -5,9 +5,10 @@ import routesService from './routesService'
 const initialState = {
     allRoutes: [],
     highRated: [],
+    routeDetail: {},
+    isLoadingRouteDetail: true,
     isLoadingAllRoutes: true,
     isLoadingHighRated: true,
-
 }
 
 export const getAllRoutes = createAsyncThunk('routes/getAllRoutes', async(thunkAPI) => {
@@ -21,6 +22,14 @@ export const getAllRoutes = createAsyncThunk('routes/getAllRoutes', async(thunkA
 export const getHighRatedRoutes = createAsyncThunk('routes/getHighRatedRoutes', async(thunkAPI) => {
     try {
         return await routesService.getHighRatedRoutes()
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data)
+    }
+})
+
+export const getRouteByID = createAsyncThunk('routes/getRouteByID', async(id, thunkAPI) => {
+    try {
+        return await routesService.getRouteByID(id)
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data)
     }
@@ -57,18 +66,24 @@ export const routesSlice = createSlice({
                 state.highRated = action.payload
                 state.isLoadingHighRated = false
             })
-
-        // builder
-        // .addCase(getById.pending, (state) => {
-        //     state.isLoading = true
-        // })
-        // .addCase(getById.fulfilled, (state, action) => {
-        //     state.userDisplayed = action.payload.foundUser
-        //     state.isLoading = false
-        // })
-        // .addCase(getById.rejected, (state, action) => {
-        //     state.loadingFailed = true
-        // })
+            .addCase(getRouteByID.pending, (state) => {
+                state.isLoadingRouteDetail = true
+            })
+            .addCase(getRouteByID.fulfilled, (state, action) => {
+                state.isLoadingRouteDetail = false
+                state.routeDetail = {...action.payload.route, evaluations: action.payload.evaluations, averageScore: action.payload.averageScore }
+            })
+            // builder
+            // .addCase(getById.pending, (state) => {
+            //     state.isLoading = true
+            // })
+            // .addCase(getById.fulfilled, (state, action) => {
+            //     state.userDisplayed = action.payload.foundUser
+            //     state.isLoading = false
+            // })
+            // .addCase(getById.rejected, (state, action) => {
+            //     state.loadingFailed = true
+            // })
     },
 })
 

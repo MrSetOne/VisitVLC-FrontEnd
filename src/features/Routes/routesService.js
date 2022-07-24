@@ -22,9 +22,22 @@ const getHighRatedRoutes = async() => {
     return (res.data)
 }
 
+const getRouteByID = async(id) => {
+    const token = JSON.parse(localStorage.getItem("token"));
+    const res = await axios.get(`${API_URL}/routes/id/${id}`, {
+        headers: {
+            authorization: token ? token : null
+        },
+    })
+    return (res.data)
+}
+
+
+
 const RoutesService = {
     getAllRoutes,
-    getHighRatedRoutes
+    getHighRatedRoutes,
+    getRouteByID
 }
 
 export default RoutesService
