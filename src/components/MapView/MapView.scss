@@ -1,6 +1,11 @@
+.map__fullContainer {
+    height: calc(100vh - 5rem);
+    overflow: hidden;
+}
+
 .leaflet-container {
+    height: 100%;
     width: 100vw;
-    height: calc(88vh - 5rem);
 }
 
 .info__icon {
@@ -14,4 +19,17 @@
     padding: 1rem;
     aspect-ratio: 1/1;
     border-radius: 50%;
+}
+
+.map__upIcon {
+    position: absolute;
+    bottom: 1rem;
+    font-size: 4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1001;
+    padding: .5rem;
+    background-color: #ff6000;
+    border-radius: 50%;
+    color: white;
 }

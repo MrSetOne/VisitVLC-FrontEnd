@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import L, { Icon } from "leaflet";
 import { Marker } from "react-leaflet";
+import me from "../../../assets/Pins/me.svg";
 
 const UserPosition = () => {
   const [userPosition, setUserPosition] = useState({
@@ -26,8 +27,7 @@ const UserPosition = () => {
   }, []);
 
   const redIcon = new L.Icon({
-    iconUrl:
-      "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
+    iconUrl: me,
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],

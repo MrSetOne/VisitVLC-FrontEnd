@@ -1,0 +1,33 @@
+.HighRatedItem {
+    height: 17rem;
+    background-size: cover;
+    background-position: center;
+    border: none;
+    .route-btn__cover {
+        gap: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        -webkit-box-shadow: inset 0px 0px 50px 0px #000000;
+        box-shadow: inset 0px 0px 50px 0px #000000;
+        width: 100%;
+        backdrop-filter: blur(2px);
+        height: 100%;
+        .title {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-shadow: 0px 0px 9px rgba(0, 0, 0, 0.68);
+        }
+        .data {
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            text-shadow: 0px 0px 9px rgba(0, 0, 0, 0.68);
+            svg {
+                font-size: 3rem;
+                text-shadow: 0px 0px 9px rgba(0, 0, 0, 0.68);
+            }
+        }
+    }
+}
