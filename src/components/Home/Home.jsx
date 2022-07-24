@@ -55,7 +55,7 @@ const Home = () => {
       <div className="content">{content}</div>
       <footer className="footer">
         <button className="footer-btn">
-          <FontAwesomeIcon icon={faFilter} />
+          <FontAwesomeIcon icon={faFilter} onClick={() => navigate("/search")}/>
         </button>
         <button className="footer-btn" onClick={() => navigate("/allroutes")}>
           <FontAwesomeIcon icon={faMapLocationDot} />
