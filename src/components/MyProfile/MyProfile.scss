@@ -1,0 +1,11 @@
+.Segmented__option {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 5.6rem;
+    width: 100%;
+    svg {
+        font-size: 2rem;
+    }
+}
