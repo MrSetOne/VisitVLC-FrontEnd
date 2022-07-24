@@ -49,7 +49,7 @@ const Home = () => {
       <div className="content">{content}</div>
       <footer className="footer">
         <button className="footer-btn">
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
+          <FontAwesomeIcon icon={faMagnifyingGlass} onClick={() => navigate("/search")}/>
         </button>
         <button className="footer-btn" onClick={() => navigate("/allroutes")}>
           <FontAwesomeIcon icon={faMapLocationDot} />

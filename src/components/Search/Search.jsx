@@ -1,16 +1,23 @@
 import { Button, Form, Input, Select } from 'antd';
 import React from 'react';
+import { filterRoute } from '../../features/Routes/RoutesSlice';
+import { useSelector, useDispatch } from "react-redux";
+import SearchResults from './SearchResults/SearchResults';
 const { Option } = Select;
 
 
 const Search = () => {
   const [form] = Form.useForm();
+  const { filteredRoutes } = useSelector((state) => state.routes);
+  // console.log(filteredRoutes)
+  const dispatch = useDispatch()
 
   const onFinish = (values) => {
-    console.log(values);
+    dispatch(filterRoute(values))
   };
 
   return (
+    <div className="Search">
     <Form form={form} name="control-hooks" onFinish={onFinish}>
 
       <Form.Item
@@ -75,6 +82,8 @@ const Search = () => {
         </Button>
       </Form.Item>
     </Form>
+    {filteredRoutes.length === 0 ? <h2>No hay rutas</h2> : filteredRoutes.map(item => <SearchResults item={item}/>)}
+    </div>
   );
 };
 

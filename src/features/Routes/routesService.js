@@ -32,12 +32,24 @@ const getRouteByID = async(id) => {
     return (res.data)
 }
 
+const filterRoute = async(values) => {
+    console.log(values)
+    const token = JSON.parse(localStorage.getItem("token"));
+    const res = await axios.put(`${API_URL}/routes/filter`,values, {
+        headers: {
+            authorization: token ? token : null
+        },
+    })
+    console.log(res.data)
+    return (res.data)
+}
 
 
 const RoutesService = {
     getAllRoutes,
     getHighRatedRoutes,
-    getRouteByID
+    getRouteByID,
+    filterRoute
 }
 
 export default RoutesService

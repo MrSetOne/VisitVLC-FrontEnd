@@ -9,6 +9,7 @@ const initialState = {
     isLoadingRouteDetail: true,
     isLoadingAllRoutes: true,
     isLoadingHighRated: true,
+    filteredRoutes: []
 }
 
 export const getAllRoutes = createAsyncThunk('routes/getAllRoutes', async(thunkAPI) => {
@@ -30,6 +31,15 @@ export const getHighRatedRoutes = createAsyncThunk('routes/getHighRatedRoutes', 
 export const getRouteByID = createAsyncThunk('routes/getRouteByID', async(id, thunkAPI) => {
     try {
         return await routesService.getRouteByID(id)
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data)
+    }
+})
+
+export const filterRoute = createAsyncThunk('routes/filterRoute', async(values, thunkAPI) => {
+    console.log(values)
+    try {
+        return await routesService.filterRoute(values)
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data)
     }
@@ -72,6 +82,12 @@ export const routesSlice = createSlice({
             .addCase(getRouteByID.fulfilled, (state, action) => {
                 state.isLoadingRouteDetail = false
                 state.routeDetail = {...action.payload.route, evaluations: action.payload.evaluations, averageScore: action.payload.averageScore }
+            })
+            .addCase(filterRoute.fulfilled, (state, action) => {
+                state.filteredRoutes = action.payload
+            })
+            .addCase(filterRoute.rejected, (state, action) => {
+                state.filteredRoutes = []
             })
             // builder
             // .addCase(getById.pending, (state) => {
