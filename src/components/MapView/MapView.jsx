@@ -80,6 +80,7 @@ const MapView = () => {
         setVisibleDrawer={setVisibleDrawer}
       />
       <MapFooter
+        id={id}
         setVisibleFooter={setVisibleFooter}
         setCurrent={setCurrent}
         current={current}

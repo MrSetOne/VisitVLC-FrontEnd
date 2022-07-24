@@ -8,8 +8,6 @@ const FavRoutes = () => {
 
   const { favoriteRoutes } = useSelector((state) => state.auth);
 
-  console.log(favoriteRoutes)
-
   useEffect(() => {
     dispatch(getFavoritesRoutes())
   }, [])

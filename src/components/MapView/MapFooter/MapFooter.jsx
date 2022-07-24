@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { favoriteRoute } from '../../../features/Routes/RoutesSlice'
 import {
   faCircleChevronDown,
   faStar,
@@ -15,12 +16,15 @@ import "./MapFooter.scss";
 import { motion } from "framer-motion";
 import { Button } from "antd";
 import ModalSiteDetail from "../ModalSiteDetail/ModalSiteDetail";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch, useEffect } from "react-redux";
 
-const MapFooter = ({ setVisibleFooter, setCurrent, current, routeLength }) => {
+const MapFooter = ({ setVisibleFooter, setCurrent, current, routeLength, id }) => {
   const [visibleModalDetail, setVisibleModalDetail] = useState(false);
 
   const { routeDetail } = useSelector((state) => state.routes);
+  const { addToFavourite } = useSelector((state) => state.routes);
+
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -91,7 +95,7 @@ const MapFooter = ({ setVisibleFooter, setCurrent, current, routeLength }) => {
               )
             }
           >
-            <FontAwesomeIcon icon={faHeartCirclePlus} />
+            <FontAwesomeIcon icon={faHeartCirclePlus} onClick={() => dispatch(favoriteRoute(id)) }/>
           </Button>
         </div>
       </motion.div>
