@@ -72,7 +72,7 @@ const Home = () => {
           <FontAwesomeIcon icon={faMapLocationDot} />
           <p>Todas las Rutas</p>
         </Button>
-        <Button type="primary" className="footer-btn">
+        <Button type="primary" className="footer-btn" onClick={() => navigate('/places')}>
           <FontAwesomeIcon icon={faPlaceOfWorship} />
           <p>Sitios</p>
         </Button>
