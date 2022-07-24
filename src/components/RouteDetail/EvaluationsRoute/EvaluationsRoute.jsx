@@ -3,10 +3,10 @@ import { Rate } from "antd";
 
 const EvaluationsRoute = ({ item }) => {
   return (
-    <div className="EvaluationsRoute">
+    <li className="EvaluationsRoute">
       <Rate disabled allowHalf defaultValue={item.score} />
       <p>{item.comment}</p>
-    </div>
+    </li>
   );
 };
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import data from "../../assets/data.json";
 import "./MapView.scss";
@@ -9,19 +9,30 @@ import UserPosition from "./UserPosition/UserPosition";
 import MapFooter from "./MapFooter/MapFooter";
 import RouteInfo from "./RouteInfo/RouteInfo";
 import { motion } from "framer-motion";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getRouteByID } from "../../features/Routes/RoutesSlice";
 
 const MAP_TOKEN = process.env.REACT_APP_MAP_TOKEN;
 
 const MapView = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { routeDetail, isLoadingRouteDetail } = useSelector(
+    (state) => state.routes
+  );
+
   const [visibleDrawer, setVisibleDrawer] = useState(false);
   const [visibleFooter, setVisibleFooter] = useState(false);
   const [current, setCurrent] = useState(0);
 
-  const allPlaces = data.map((place, i) => (
-    <SiteMarker place={place} i={i} current={current} />
-  ));
+  useEffect(() => {
+    dispatch(getRouteByID(id));
+  }, [id]);
 
-  return (
+  return isLoadingRouteDetail ? (
+    <h1>Cargando...</h1>
+  ) : (
     <div className="map__fullContainer">
       <FontAwesomeIcon
         className="info__icon"
@@ -49,7 +60,9 @@ const MapView = () => {
               MAP_TOKEN
             }
           />
-          {allPlaces}
+          {routeDetail.poi.map((place, i) => (
+            <SiteMarker place={place} i={i} current={current} />
+          ))}
           <UserPosition />
         </MapContainer>
       </motion.div>
@@ -62,7 +75,7 @@ const MapView = () => {
       <RouteInfo
         current={current}
         setCurrent={setCurrent}
-        data={data}
+        data={routeDetail.poi}
         visibleDrawer={visibleDrawer}
         setVisibleDrawer={setVisibleDrawer}
       />
@@ -70,7 +83,7 @@ const MapView = () => {
         setVisibleFooter={setVisibleFooter}
         setCurrent={setCurrent}
         current={current}
-        routeLength={data.length}
+        routeLength={routeDetail.length}
       />
     </div>
   );

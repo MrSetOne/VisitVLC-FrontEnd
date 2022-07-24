@@ -8,6 +8,7 @@ import ModalSiteDetail from "../ModalSiteDetail/ModalSiteDetail";
 const SiteMarker = ({ place, i, current }) => {
   console.log("current: " + current);
   console.log("i: " + i);
+  console.log(place);
 
   const [visibleModalDetail, setVisibleModalDetail] = useState(false);
 
@@ -29,14 +30,11 @@ const SiteMarker = ({ place, i, current }) => {
 
   return (
     <>
-      <Marker
-        position={[place.location.latitude, place.location.longitude]}
-        icon={Icon}
-      >
+      <Marker position={[place.longitude, place.latitude]} icon={Icon}>
         <Popup>
           <div className="siteMarker-popup">
             <h2>{place.name}</h2>
-            <p>{truncateAfterWord(place.description, 83)}</p>
+            <p>{truncateAfterWord(place.description_es, 83)}</p>
             <Button
               type="primary"
               block
