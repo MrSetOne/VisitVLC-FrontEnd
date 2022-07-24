@@ -1,11 +1,14 @@
-import { Rate } from "antd";
+import { Rate, Collapse, Button } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getRouteByID } from "../../features/Routes/RoutesSlice";
+import EvaluationsRoute from "./EvaluationsRoute/EvaluationsRoute";
+import PoiDetail from "./PoiDetail/PoiDetail";
 
 const RouteDetail = () => {
   const { id } = useParams();
+  const { Panel } = Collapse;
   const dispatch = useDispatch();
 
   const { routeDetail, isLoadingRouteDetail } = useSelector(
@@ -27,14 +30,38 @@ const RouteDetail = () => {
           {routeDetail.difficulty === "NaN" ? null : (
             <h3>Difucultad: {routeDetail.difficulty}</h3>
           )}
-          <h3>Duracion: {routeDetail.duration}</h3>
+          <h3>Duracion: {routeDetail.duration} minutos</h3>
           <h3>Valoracion:</h3>
           {routeDetail.averageScore === "NaN" ? (
             <p>Ruta aun sin valoraión</p>
           ) : (
-            <Rate disabled defaultValue={routeDetail.averageScore} />
+            <Rate disabled allowHalf defaultValue={routeDetail.averageScore} />
           )}
           <p>{routeDetail.description_es}</p>
+          <div>
+            <Button type="primary">Guardar en favoritos</Button>
+            <Button type="primary">Iniciar ruta</Button>
+          </div>
+          <Collapse>
+            <Panel header="Puntos de interés">
+              <ul style={{ padding: "0 2rem" }}>
+                {routeDetail.poi.map((poiItem) => (
+                  <PoiDetail poi={poiItem} />
+                ))}
+              </ul>
+            </Panel>
+            <Panel header="Opiniones">
+              <ul>
+                {routeDetail.evaluations.length === 0 ? (
+                  <h1>Nadie ha opinado</h1>
+                ) : (
+                  routeDetail.evaluations.map((item) => (
+                    <EvaluationsRoute item={item} />
+                  ))
+                )}
+              </ul>
+            </Panel>
+          </Collapse>
         </div>
       )}
     </section>
