@@ -27,23 +27,20 @@ const Home = () => {
       setContent(<HighRated />);
       setTabBar({
         width: 113,
-        translateX: "calc(-50% + 6px)",
-        left: "50%",
+        // translateX: "calc(-50% + 6px)",
+        left: 0 + 30,
       });
     } else if (dest === "FavRoutes") {
       setContent(<FavRoutes />);
-      setTabBar({ width: 65, left: "calc(100% - 95px)" });
+      setTabBar({ width: 105, left: "calc(100% - 105px - 30px)" });
     }
   };
 
   return (
     <div className="Home">
       <div className="tab-menu">
-        <button onClick={() => setTabBar({ width: 76, left: 0 + 30 })}>
-          Categorias
-        </button>
         <button onClick={() => goto("HighRated")}>Mejor Valoradas</button>
-        <button onClick={() => goto("FavRoutes")}>Favoritas</button>
+        <button onClick={() => goto("FavRoutes")}>Rutas favoritas</button>
         <motion.div className="tab-menu__tab" animate={tabBar} />
       </div>
       <div className="content">{content}</div>
