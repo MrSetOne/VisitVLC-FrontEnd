@@ -2,10 +2,34 @@ import Login from "./Login/Login";
 import Signup from "./Signup/Signup";
 import "./LogPage.scss";
 import brand from "../../assets/visitVLCiconOrange.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { notification } from "antd";
+import { resetNotifications } from "../../features/auth/authSlice";
 
 const LogPage = () => {
   const [needsignup, setNeedsignup] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const {
+    notification: feedback,
+    isLoading,
+    isError,
+  } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (isError) {
+      notification.error({
+        message: "Algo ha salido mal...",
+        description: feedback,
+        placement: "bottom",
+      });
+      setTimeout(() => {
+        dispatch(resetNotifications());
+      }, 2000);
+    }
+  }, [feedback]);
 
   return (
     <div className="LogPage">

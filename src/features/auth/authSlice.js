@@ -27,7 +27,6 @@ export const logIn = createAsyncThunk('auth/login', async(data, thunkAPI) => {
 
 export const signUp = createAsyncThunk('auth/signup', async(data, thunkAPI) => {
     try {
-        console.log(data)
         return await authService.signUp(data)
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data)
@@ -54,7 +53,7 @@ export const getCurrentUser = createAsyncThunk('auth/getCurrentUser', async(data
     try {
         return await authService.getCurrentUser()
     } catch (error) {
-        console.log(error)
+        return thunkAPI.rejectWithValue(error.response.data)
     }
 })
 
@@ -62,7 +61,7 @@ export const updateUserData = createAsyncThunk('auth/updateUserData', async(data
     try {
         return await authService.updateUserData(data)
     } catch (error) {
-        console.log(error)
+        return thunkAPI.rejectWithValue(error.response.data)
     }
 })
 
@@ -70,7 +69,7 @@ export const changeUserPassword = createAsyncThunk('auth/changeUserPassword', as
     try {
         return await authService.changeUserPassword(newPassword)
     } catch (error) {
-        console.log(error)
+        return thunkAPI.rejectWithValue(error.response.data)
     }
 })
 
@@ -97,12 +96,11 @@ export const authSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(logIn.fulfilled, (state, action) => {
-                console.log(action.payload)
                 state.evaluations = action.payload.user.evaluationIds.map((item, i) => { return {...item, ...action.payload.evaluationsRoutes[i] } })
                 state.isLoading = false;
                 state.user = {...action.payload.user };
                 state.token = action.payload.token;
-                state.notification = action.payload.message;
+                state.notification = action.payload.user.firstName;
                 state.isSucces = true;
                 state.favoriteRoutes = action.payload.favoriteRoutes
             })
@@ -120,9 +118,10 @@ export const authSlice = createSlice({
                 state.notification = action.payload.message;
             })
             .addCase(signUp.rejected, (state, action) => {
+                console.log(action)
                 state.isLoading = false
                 state.isError = true
-                state.notification = action.payload.messages[0];
+                state.notification = action.payload;
             })
             .addCase(logOut.pending, (state, action) => {
                 state.isLoading = true;

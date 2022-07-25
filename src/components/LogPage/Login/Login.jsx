@@ -20,32 +20,32 @@ const Login = ({ setNeedsignup }) => {
     dispatch(logIn(values));
   };
 
-  useEffect(() => {
-    if (isSucces) {
-      notification.success({
-        message: "Wellcome",
-        description: feedback,
-        placement: "bottom",
-      });
-      setTimeout(() => {
-        dispatch(resetNotifications());
-      }, 2000);
-    }
-    if (isError) {
-      notification.error({
-        message: "Something has gone wrong...",
-        description: feedback,
-        placement: "bottom",
-      });
-      setTimeout(() => {
-        dispatch(resetNotifications());
-      }, 2000);
-    }
-  }, [feedback]);
+  // useEffect(() => {
+  //   if (isSucces) {
+  //     notification.success({
+  //       message: "Wellcome",
+  //       description: feedback,
+  //       placement: "bottom",
+  //     });
+  //     setTimeout(() => {
+  //       dispatch(resetNotifications());
+  //     }, 2000);
+  //   }
+  //   if (isError) {
+  //     notification.error({
+  //       message: "Something has gone wrong...",
+  //       description: feedback,
+  //       placement: "bottom",
+  //     });
+  //     setTimeout(() => {
+  //       dispatch(resetNotifications());
+  //     }, 2000);
+  //   }
+  // }, [feedback]);
 
   return (
     <div className="Login">
-      <h1>Login</h1>
+      <h1>Iniciar sesión</h1>
       <Form
         name="normal_login"
         className="Login__form"
@@ -59,13 +59,13 @@ const Login = ({ setNeedsignup }) => {
           rules={[
             {
               required: true,
-              message: "Please input your email!",
+              message: "Introduce tu email",
             },
           ]}
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Email"
+            placeholder="Tu email"
           />
         </Form.Item>
         <Form.Item
@@ -73,26 +73,26 @@ const Login = ({ setNeedsignup }) => {
           rules={[
             {
               required: true,
-              message: "Please input your Password!",
+              message: "Introduce tu contraseña",
             },
           ]}
         >
           <Input
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
-            placeholder="Password"
+            placeholder="Tu contraseña"
           />
         </Form.Item>
         <Form.Item noStyle={true}>
           <div className="Login__form--btns">
-            <Button onClick={() => setNeedsignup(true)}>Sign up</Button>
+            <Button onClick={() => setNeedsignup(true)}>Registrarse</Button>
             <Button
               type="primary"
               htmlType="submit"
               className="login-form-button"
               loading={isLoading}
             >
-              Log in
+              Iniciar Sesión
             </Button>
           </div>
         </Form.Item>

@@ -44,7 +44,7 @@ const NavBar = () => {
   useEffect(() => {
     if (isSucces) {
       notification.success({
-        message: "Wellcome",
+        message: "¡Bienvenid@!",
         description: feedback,
         placement: "bottom",
       });

@@ -19,29 +19,13 @@ const Signup = ({ setNeedsignup }) => {
     confirm: "",
   };
 
-  const [data, setData] = useState(dataInit);
-
   const dispatch = useDispatch();
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
-    console.log(values);
     form.resetFields();
     await dispatch(signUp({ ...values }));
   };
-
-  useEffect(() => {
-    if (isError) {
-      notification.error({
-        message: "Something has gone wrong...",
-        description: feedback,
-        placement: "bottom",
-      });
-      setTimeout(() => {
-        dispatch(resetNotifications());
-      }, 2000);
-    }
-  }, [feedback]);
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
