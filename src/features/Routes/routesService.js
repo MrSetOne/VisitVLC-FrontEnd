@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const API_URL = process.env.REACT_APP_API_URL
 
-const getAllRoutes = async(user) => {
+const getAllRoutes = async (user) => {
     const token = JSON.parse(localStorage.getItem("token"));
     const res = await axios.get(`${API_URL}/routes`, {
         headers: {
@@ -12,7 +12,7 @@ const getAllRoutes = async(user) => {
     return res.data
 }
 
-const getHighRatedRoutes = async() => {
+const getHighRatedRoutes = async () => {
     const token = JSON.parse(localStorage.getItem("token"));
     const res = await axios.get(`${API_URL}/routes/morePopular`, {
         headers: {
@@ -22,7 +22,7 @@ const getHighRatedRoutes = async() => {
     return (res.data)
 }
 
-const getRouteByID = async(id) => {
+const getRouteByID = async (id) => {
     const token = JSON.parse(localStorage.getItem("token"));
     const res = await axios.get(`${API_URL}/routes/id/${id}`, {
         headers: {
@@ -32,7 +32,7 @@ const getRouteByID = async(id) => {
     return (res.data)
 }
 
-const filterRoute = async(values) => {
+const filterRoute = async (values) => {
     const token = JSON.parse(localStorage.getItem("token"));
     const res = await axios.put(`${API_URL}/routes/filter`, values, {
         headers: {
@@ -42,9 +42,19 @@ const filterRoute = async(values) => {
     return (res.data)
 }
 
-const favoriteRoute = async(id) => {
+const favoriteRoute = async (id) => {
     const token = JSON.parse(localStorage.getItem("token"));
-    const res = await axios.put(`${API_URL}/routes/addToFavorite/${id}`,{}, {
+    const res = await axios.put(`${API_URL}/routes/addToFavorite/${id}`, {}, {
+        headers: {
+            authorization: token ? token : null
+        },
+    })
+    return (res.data)
+}
+
+const favoriteRouteOut = async (id) => {
+    const token = JSON.parse(localStorage.getItem("token"));
+    const res = await axios.put(`${API_URL}/routes/favoriteRouteOut/${id}`, {}, {
         headers: {
             authorization: token ? token : null
         },
@@ -57,7 +67,8 @@ const RoutesService = {
     getHighRatedRoutes,
     getRouteByID,
     filterRoute,
-    favoriteRoute
+    favoriteRoute,
+    favoriteRouteOut
 }
 
 export default RoutesService

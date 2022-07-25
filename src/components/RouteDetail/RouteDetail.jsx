@@ -2,9 +2,14 @@ import { Rate, Collapse, Button } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getRouteByID, favoriteRoute } from "../../features/Routes/RoutesSlice";
+import {
+  getRouteByID,
+  favoriteRoute,
+  favoriteRouteOut,
+} from "../../features/Routes/RoutesSlice";
 import EvaluationsRoute from "./EvaluationsRoute/EvaluationsRoute";
 import PoiDetail from "./PoiDetail/PoiDetail";
+import { addToFav, removeToFav } from "../../features/auth/authSlice";
 
 const RouteDetail = () => {
   const { id } = useParams();
@@ -12,9 +17,11 @@ const RouteDetail = () => {
   const navigate = useNavigate();
   const { Panel } = Collapse;
 
-  const { routeDetail, isLoadingRouteDetail } = useSelector(
+  const { routeDetail, isLoadingRouteDetail, isLoadingFav } = useSelector(
     (state) => state.routes
   );
+
+  const { favoriteRoutes } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getRouteByID(id));
@@ -40,7 +47,31 @@ const RouteDetail = () => {
           )}
           <p>{routeDetail.description_es}</p>
           <div>
-            <Button type="primary" onClick={() => dispatch(favoriteRoute(id)) }>Guardar en favoritos</Button>
+            {favoriteRoutes.some(
+              (objetive) => Number(objetive.route_id) === Number(id)
+            ) ? (
+              <Button
+                type="primary"
+                loading={isLoadingFav}
+                onClick={async () => {
+                  await dispatch(favoriteRouteOut(id));
+                  dispatch(removeToFav(id));
+                }}
+              >
+                Quitar en favoritos
+              </Button>
+            ) : (
+              <Button
+                type="primary"
+                loading={isLoadingFav}
+                onClick={async () => {
+                  await dispatch(favoriteRoute(id));
+                  dispatch(addToFav(routeDetail));
+                }}
+              >
+                Guardar en favoritos
+              </Button>
+            )}
             <Button
               type="primary"
               onClick={() => navigate(`/map/${routeDetail.route_id}`)}
