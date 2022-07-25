@@ -61,36 +61,23 @@ const NavBar = () => {
           label: (
             <div className="Dropdown__Item" onClick={() => goTo("/profile")}>
               <FontAwesomeIcon icon={faUser} />
-              <p>Your Profile</p>
+              <p>Mi perfil</p>
             </div>
           ),
           key: "0",
         },
         {
           label: (
-            <div
-              className="Dropdown__Item"
-              onClick={() => setVisibleDropDown(false)}
-            >
-              <FontAwesomeIcon icon={faCrown} />
-              <p>Favorite Routes</p>
-            </div>
-          ),
-          key: "1",
-          disabled: true,
-        },
-        {
-          label: (
             <Popconfirm
               placement="leftTop"
-              title="Are you sure?"
+              title="¿Estás seguro de salir?"
               visible={showPopConfirm}
               onConfirm={() => goLogOut()}
               onCancel={() => {
                 setShowPopConfirm(false);
                 setVisibleDropDown(false);
               }}
-              okText="Yes"
+              okText="Si"
               cancelText="No"
               okButtonProps={{ loading: isLoading }}
             >
@@ -99,7 +86,7 @@ const NavBar = () => {
                 onClick={() => setShowPopConfirm(!showPopConfirm)}
               >
                 <FontAwesomeIcon icon={faCircleXmark} />
-                <p>Logout</p>
+                <p>Cerrar sesión</p>
               </div>
             </Popconfirm>
           ),

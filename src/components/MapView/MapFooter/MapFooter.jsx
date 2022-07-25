@@ -71,9 +71,9 @@ const MapFooter = ({
             type="primary"
             shape="circle"
             size="large"
+            onClick={() => navigate(`/route/${id}`)}
           >
             <FontAwesomeIcon icon={faHandPointLeft} />
-            {/* ESTE BOTON TE TIENE QUE LLEVAR A LA VISTA DE ROUTE DETAIL */}
           </Button>
           <Button
             className="footer-btns"

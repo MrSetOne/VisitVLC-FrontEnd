@@ -19,7 +19,9 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCurrentUser());
+    if (localStorage.token) {
+      dispatch(getCurrentUser());
+    }
   }, []);
 
   return (

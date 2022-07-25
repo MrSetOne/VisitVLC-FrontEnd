@@ -13,7 +13,8 @@ const initialState = {
     isSuccesLogOut: false,
     isError: false,
     notification: "",
-    favoriteRoutes: []
+    favoriteRoutes: [],
+    evaluations: []
 }
 
 export const logIn = createAsyncThunk('auth/login', async(data, thunkAPI) => {
@@ -96,6 +97,8 @@ export const authSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(logIn.fulfilled, (state, action) => {
+                console.log(action.payload)
+                state.evaluations = action.payload.user.evaluationIds.map((item, i) => { return {...item, ...action.payload.evaluationsRoutes[i] } })
                 state.isLoading = false;
                 state.user = {...action.payload.user };
                 state.token = action.payload.token;
@@ -110,19 +113,16 @@ export const authSlice = createSlice({
             })
             .addCase(signUp.pending, (state) => {
                 state.isLoading = true;
-                console.log('se intenta')
             })
             .addCase(signUp.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSucces = true;
                 state.notification = action.payload.message;
-                console.log({ msg: 'se completa' }, action.payload)
             })
             .addCase(signUp.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.notification = action.payload.messages[0];
-                console.log({ msg: 'se rejecta' }, action.payload)
             })
             .addCase(logOut.pending, (state, action) => {
                 state.isLoading = true;
@@ -133,7 +133,6 @@ export const authSlice = createSlice({
                 state.token = null;
             })
             .addCase(logOut.rejected, (state, action) => {
-                console.log(action)
                 state.isLoading = false
                 state.isError = true
             })
@@ -141,6 +140,7 @@ export const authSlice = createSlice({
                 state.favoriteRoutes = action.payload
             })
             .addCase(getCurrentUser.fulfilled, (state, action) => {
+                state.evaluations = action.payload.user.evaluationIds.map((item, i) => { return {...item, ...action.payload.evaluationsRoutes[i] } })
                 state.favoriteRoutes = action.payload.favoriteRoutes
                 state.user = action.payload.user;
             })
