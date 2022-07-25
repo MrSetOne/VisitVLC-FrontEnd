@@ -44,7 +44,7 @@ const filterRoute = async(values) => {
 
 const favoriteRoute = async(id) => {
     const token = JSON.parse(localStorage.getItem("token"));
-    const res = await axios.put(`${API_URL}/routes/addToFavorite/${id}`, {
+    const res = await axios.put(`${API_URL}/routes/addToFavorite/${id}`,{}, {
         headers: {
             authorization: token ? token : null
         },

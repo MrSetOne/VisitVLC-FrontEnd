@@ -2,7 +2,7 @@ import { Rate, Collapse, Button } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getRouteByID } from "../../features/Routes/RoutesSlice";
+import { getRouteByID, favoriteRoute } from "../../features/Routes/RoutesSlice";
 import EvaluationsRoute from "./EvaluationsRoute/EvaluationsRoute";
 import PoiDetail from "./PoiDetail/PoiDetail";
 
@@ -40,7 +40,7 @@ const RouteDetail = () => {
           )}
           <p>{routeDetail.description_es}</p>
           <div>
-            <Button type="primary">Guardar en favoritos</Button>
+            <Button type="primary" onClick={() => dispatch(favoriteRoute(id)) }>Guardar en favoritos</Button>
             <Button
               type="primary"
               onClick={() => navigate(`/map/${routeDetail.route_id}`)}
