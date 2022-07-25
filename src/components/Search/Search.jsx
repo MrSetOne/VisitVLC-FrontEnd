@@ -1,6 +1,6 @@
 import { Button, Form, Input, Select } from "antd";
-import React, { useState } from "react";
-import { filterRoute } from "../../features/Routes/RoutesSlice";
+import React, { useEffect, useState } from "react";
+import { filterRoute, resetHasRoute } from "../../features/Routes/RoutesSlice";
 import { useSelector, useDispatch } from "react-redux";
 import SearchResults from "./SearchResults/SearchResults";
 import "./Search.scss";
@@ -8,14 +8,18 @@ const { Option } = Select;
 
 const Search = () => {
   const [form] = Form.useForm();
-  const { filteredRoutes } = useSelector((state) => state.routes);
+  const { filteredRoutes, filterMessage, hasRoute } = useSelector((state) => state.routes);
   const [firstTime, setFirstTime] = useState(true);
+
+  console.log(filterMessage)
+
 
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
     setFirstTime(false);
     dispatch(filterRoute(values));
+    dispatch(resetHasRoute())
   };
 
   return (
@@ -60,9 +64,10 @@ const Search = () => {
       </Form>
       <div className="Result__Container">
         {firstTime ? null : filteredRoutes.length === 0 ? (
-          <h2>Cargando...</h2>
-        ) : (
-          filteredRoutes.map((item) => <SearchResults item={item} />)
+          hasRoute ? (
+            <h2>{filterMessage}</h2>
+          ) : (<h2>Cargando...</h2>)
+        ) : (filteredRoutes.map((item) => <SearchResults item={item} />)
         )}
       </div>
     </div>
