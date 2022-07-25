@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { favoriteRoute } from '../../../features/Routes/RoutesSlice'
-import { createEvaluation } from '../../../features/Evaluation/evaluationSlice'
+import {
+  favoriteRoute,
+  favoriteRouteOut,
+} from "../../../features/Routes/RoutesSlice";
+import { createEvaluation } from "../../../features/Evaluation/evaluationSlice";
 import {
   faChevronDown,
   faHandPointLeft,
@@ -9,26 +12,34 @@ import {
   faCaretRight,
   faCircleInfo,
   faHeartCirclePlus,
+  faHeartCircleMinus,
   faCircleCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import "./MapFooter.scss";
 import { motion } from "framer-motion";
 import ModalSiteDetail from "../ModalSiteDetail/ModalSiteDetail";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Input, Rate, Modal, Form } from 'antd';
-import {useNavigate} from 'react-router-dom'
-const { TextArea } = Input;
+import { Button, Input, Rate, Modal, Form } from "antd";
+import { useNavigate } from "react-router-dom";
+import { addToFav, removeToFav } from "../../../features/auth/authSlice";
 
-
-const MapFooter = ({ setVisibleFooter, setCurrent, current, routeLength, id }) => {
+const MapFooter = ({
+  setVisibleFooter,
+  setCurrent,
+  current,
+  routeLength,
+  id,
+}) => {
   const [visibleModalDetail, setVisibleModalDetail] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState(0);
   const { routeDetail } = useSelector((state) => state.routes);
-  // const { addToFavourite } = useSelector((state) => state.routes);
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const { favoriteRoutes } = useSelector((state) => state.auth);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { TextArea } = Input;
   const handleOk = () => {
     setIsModalVisible(false);
   };
@@ -41,13 +52,10 @@ const MapFooter = ({ setVisibleFooter, setCurrent, current, routeLength, id }) =
     setIsModalVisible(true);
   };
 
-  const onFinish = async(values) => {
-    await dispatch(createEvaluation({...values, score:rating, id}))
-    navigate('/')
+  const onFinish = async (values) => {
+    await dispatch(createEvaluation({ ...values, score: rating, id }));
+    navigate("/");
   };
-
-  
-  
 
   return (
     <>
@@ -101,20 +109,43 @@ const MapFooter = ({ setVisibleFooter, setCurrent, current, routeLength, id }) =
                 }
                 onClick={
                   routeDetail.poi.length === current + 1
-                    ? () => {showModal()}
+                    ? () => {
+                        showModal();
+                      }
                     : () => setCurrent(current + 1)
                 }
               />
             </div>
           </Button>
+
           <Button
             type="primary"
             shape="circle"
             size="large"
             className="footer-btns"
-            onClick={() => dispatch(favoriteRoute(id)) }
+            onClick={async () => {
+              if (
+                favoriteRoutes.some(
+                  (objetive) => Number(objetive.route_id) === Number(id)
+                )
+              ) {
+                await dispatch(favoriteRouteOut(id));
+                dispatch(removeToFav(id));
+              } else {
+                await dispatch(favoriteRoute(id));
+                dispatch(addToFav(routeDetail));
+              }
+            }}
           >
-            <FontAwesomeIcon icon={faHeartCirclePlus}/>
+            <FontAwesomeIcon
+              icon={
+                favoriteRoutes.some(
+                  (objetive) => Number(objetive.route_id) === Number(id)
+                )
+                  ? faHeartCircleMinus
+                  : faHeartCirclePlus
+              }
+            />
           </Button>
         </div>
       </motion.div>
@@ -123,23 +154,30 @@ const MapFooter = ({ setVisibleFooter, setCurrent, current, routeLength, id }) =
         setVisibleModalDetail={setVisibleModalDetail}
         place={routeDetail.poi[current]}
       />
-      {/* AQUI VA EL NUEVO MODAL !!! */}
-      <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-          <Form onFinish={onFinish}>
-            <Form.Item name='comment'>
-              <TextArea
+      <Modal
+        title="Basic Modal"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <Form onFinish={onFinish}>
+          <Form.Item name="comment">
+            <TextArea
               placeholder="¿Qué te ha parecido la ruta?"
               name=""
               autoSize={{ minRows: 2, maxRows: 6 }}
-              />
-            </Form.Item>
-            <Form.Item name='score'>
-              <Rate allowHalf onChange={setRating} defaultValue={0} /><br/><br/>
-            </Form.Item>
-            <Button type="primary" htmlType="submit">Publicar</Button>
-          </Form>
+            />
+          </Form.Item>
+          <Form.Item name="score">
+            <Rate allowHalf onChange={setRating} defaultValue={0} />
+            <br />
+            <br />
+          </Form.Item>
+          <Button type="primary" htmlType="submit">
+            Publicar
+          </Button>
+        </Form>
       </Modal>
-        
     </>
   );
 };
