@@ -22,7 +22,7 @@ const MapFooter = ({ setVisibleFooter, setCurrent, current, routeLength, id }) =
   const [visibleModalDetail, setVisibleModalDetail] = useState(false);
 
   const { routeDetail } = useSelector((state) => state.routes);
-  const { addToFavourite } = useSelector((state) => state.routes);
+  const { addToFavorite } = useSelector((state) => state.routes);
 
   const dispatch = useDispatch()
 

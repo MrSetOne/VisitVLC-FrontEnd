@@ -2,7 +2,7 @@ import { Rate, Collapse, Button } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getRouteByID, favoriteRoute } from "../../features/Routes/RoutesSlice";
+import { getRouteByID, favoriteRoute, favoriteRouteOut } from "../../features/Routes/RoutesSlice";
 import EvaluationsRoute from "./EvaluationsRoute/EvaluationsRoute";
 import PoiDetail from "./PoiDetail/PoiDetail";
 
@@ -12,13 +12,19 @@ const RouteDetail = () => {
   const navigate = useNavigate();
   const { Panel } = Collapse;
 
-  const { routeDetail, isLoadingRouteDetail } = useSelector(
+  const { routeDetail, isLoadingRouteDetail, addToFavorite, routeOutFromFavorites } = useSelector(
     (state) => state.routes
   );
+
+  const { user } = useSelector(state => state.auth)
+
+  console.log(user)
 
   useEffect(() => {
     dispatch(getRouteByID(id));
   }, [id]);
+
+  const isMyFavorite = user.favoriteRouteIds.includes(routeDetail.id)
 
   return (
     <section className="RouteDetail">
@@ -40,7 +46,11 @@ const RouteDetail = () => {
           )}
           <p>{routeDetail.description_es}</p>
           <div>
-            <Button type="primary" onClick={() => dispatch(favoriteRoute(id)) }>Guardar en favoritos</Button>
+            {isMyFavorite ?
+              <Button type="primary" onClick={() => dispatch(favoriteRouteOut(id))}>Quitar en favoritos</Button>
+              :
+              <Button type="primary" onClick={() => dispatch(favoriteRoute(id))}>Guardar en favoritos</Button>
+            }
             <Button
               type="primary"
               onClick={() => navigate(`/map/${routeDetail.route_id}`)}
