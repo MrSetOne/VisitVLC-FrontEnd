@@ -1,0 +1,24 @@
+.ShowRoute{
+    margin: 1rem;
+    width: 15rem;
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 1rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(233, 230, 217, 0.811);
+    h2{
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    p{
+        color: rgb(166, 160, 160);
+    }
+    img{
+        margin-top: 1rem;
+        max-width: 130px;
+        max-height: 120px;
+    }
+}
