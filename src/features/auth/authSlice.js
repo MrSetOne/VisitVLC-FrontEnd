@@ -16,7 +16,7 @@ const initialState = {
     favoriteRoutes: []
 }
 
-export const logIn = createAsyncThunk('auth/login', async (data, thunkAPI) => {
+export const logIn = createAsyncThunk('auth/login', async(data, thunkAPI) => {
     try {
         return await authService.login(data)
     } catch (error) {
@@ -24,7 +24,7 @@ export const logIn = createAsyncThunk('auth/login', async (data, thunkAPI) => {
     }
 })
 
-export const signUp = createAsyncThunk('auth/signup', async (data, thunkAPI) => {
+export const signUp = createAsyncThunk('auth/signup', async(data, thunkAPI) => {
     try {
         console.log(data)
         return await authService.signUp(data)
@@ -33,7 +33,7 @@ export const signUp = createAsyncThunk('auth/signup', async (data, thunkAPI) => 
     }
 })
 
-export const logOut = createAsyncThunk('auth/logout', async (data, thunkAPI) => {
+export const logOut = createAsyncThunk('auth/logout', async(data, thunkAPI) => {
     try {
         return await authService.logOut()
     } catch (error) {
@@ -41,11 +41,19 @@ export const logOut = createAsyncThunk('auth/logout', async (data, thunkAPI) => 
     }
 })
 
-export const getFavoritesRoutes = createAsyncThunk("auth/getFavoritesRoutes", async (thunkAPI) => {
+export const getFavoritesRoutes = createAsyncThunk("auth/getFavoritesRoutes", async(thunkAPI) => {
     try {
         return await authService.getFavoritesRoutes()
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data)
+    }
+})
+
+export const getCurrentUser = createAsyncThunk('auth/getCurrentUser', async(data, thunkAPI) => {
+    try {
+        return await authService.getCurrentUser()
+    } catch (error) {
+        console.log(error)
     }
 })
 
@@ -58,6 +66,12 @@ export const authSlice = createSlice({
             state.isLoading = false;
             state.isSucces = false;
             state.notification = "";
+        },
+        addToFav: (state, action) => {
+            state.favoriteRoutes.push(action.payload)
+        },
+        removeToFav: (state, action) => {
+            state.favoriteRoutes = state.favoriteRoutes.filter(route => Number(route.route_id) !== Number(action.payload))
         }
     },
     extraReducers: (builder) => {
@@ -107,12 +121,20 @@ export const authSlice = createSlice({
                 state.isError = true
             })
             .addCase(getFavoritesRoutes.fulfilled, (state, action) => {
-                console.log(action)
                 state.favoriteRoutes = action.payload
+            })
+            .addCase(getCurrentUser.fulfilled, (state, action) => {
+                state.favoriteRoutes = action.payload.favoriteRoutes
+                state.user = action.payload.user;
+            })
+            .addCase(getCurrentUser.rejected, (state, action) => {
+                state.user = null;
+                state.token = null;
+                state.favoriteRoutes = []
             })
     },
 })
 
-export const { resetNotifications } = authSlice.actions;
+export const { resetNotifications, addToFav, removeToFav } = authSlice.actions;
 
 export default authSlice.reducer

@@ -9,9 +9,8 @@ const initialState = {
     isLoadingRouteDetail: true,
     isLoadingAllRoutes: true,
     isLoadingHighRated: true,
+    isLoadingFav: false,
     filteredRoutes: [],
-    addToFavorite: [],
-    routeOutFromFavorites:[]
 }
 
 export const getAllRoutes = createAsyncThunk('routes/getAllRoutes', async(thunkAPI) => {
@@ -47,7 +46,7 @@ export const filterRoute = createAsyncThunk('routes/filterRoute', async(values, 
     }
 })
 
-export const favoriteRoute = createAsyncThunk('routes/addToFavorite', async(id, thunkAPI)=>{
+export const favoriteRoute = createAsyncThunk('routes/addToFavorite', async(id, thunkAPI) => {
     try {
         return await routesService.favoriteRoute(id)
     } catch (error) {
@@ -55,7 +54,7 @@ export const favoriteRoute = createAsyncThunk('routes/addToFavorite', async(id, 
     }
 })
 
-export const favoriteRouteOut = createAsyncThunk('routes/favoriteRouteOut',async(id,thunkAPI)=>{
+export const favoriteRouteOut = createAsyncThunk('routes/favoriteRouteOut', async(id, thunkAPI) => {
     try {
         return await routesService.favoriteRouteOut(id)
     } catch (error) {
@@ -110,11 +109,17 @@ export const routesSlice = createSlice({
             .addCase(filterRoute.rejected, (state, action) => {
                 state.filteredRoutes = []
             })
-            .addCase(favoriteRoute.fulfilled, (state, action) => {
-                state.addToFavorite = action.payload
+            .addCase(favoriteRoute.pending, (state, action) => {
+                state.isLoadingFav = true
             })
-            .addCase(favoriteRouteOut.fulfilled,(state,action)=>{
-                state.routeOutFromFavorites = action.payload
+            .addCase(favoriteRoute.fulfilled, (state, action) => {
+                state.isLoadingFav = false
+            })
+            .addCase(favoriteRouteOut.pending, (state, action) => {
+                state.isLoadingFav = true
+            })
+            .addCase(favoriteRouteOut.fulfilled, (state, action) => {
+                state.isLoadingFav = false
             })
             // builder
             // .addCase(getById.pending, (state) => {
