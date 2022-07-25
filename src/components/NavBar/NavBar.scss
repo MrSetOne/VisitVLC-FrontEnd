@@ -4,6 +4,11 @@
     align-items: center;
     height: 5rem;
     padding: .5rem 1rem;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    -webkit-box-shadow: 1px -28px 13px 28px #00000061;
+    box-shadow: 1px -28px 13px 28px #00000061;
     img {
         height: 100%;
     }

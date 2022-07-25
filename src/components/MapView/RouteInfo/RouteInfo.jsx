@@ -24,7 +24,9 @@ const RouteInfo = ({
           <Paragraph
             ellipsis={{ rows: 2, expandable: true, symbol: "leer más..." }}
           >
-            {site.description_es}
+            {site.description_es !== "NaN"
+              ? site.description_es
+              : "Sin información"}
           </Paragraph>
         }
       />
