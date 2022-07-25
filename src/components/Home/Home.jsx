@@ -16,8 +16,7 @@ const Home = () => {
 
   const [tabBar, setTabBar] = useState({
     width: 113,
-    translateX: "calc(-50% + 6px)",
-    left: "50%",
+    left: 0 + 30,
   });
 
   const [content, setContent] = useState(<HighRated />);
@@ -27,7 +26,6 @@ const Home = () => {
       setContent(<HighRated />);
       setTabBar({
         width: 113,
-        // translateX: "calc(-50% + 6px)",
         left: 0 + 30,
       });
     } else if (dest === "FavRoutes") {

@@ -31,7 +31,7 @@ const SearchResults = ({ item }) => {
         </div>
         <div>
           <FontAwesomeIcon icon={faChartSimple} />
-          <p>{item.difficulty}</p>
+          <p>{item.difficulty === "NaN" ? "difícil" : item.difficulty}</p>
         </div>
         <div>
           {item.transport === "peu" ? (
