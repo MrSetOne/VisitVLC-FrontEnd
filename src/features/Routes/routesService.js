@@ -34,7 +34,7 @@ const getRouteByID = async(id) => {
 
 const filterRoute = async(values) => {
     const token = JSON.parse(localStorage.getItem("token"));
-    const res = await axios.put(`${API_URL}/routes/filter`,values, {
+    const res = await axios.put(`${API_URL}/routes/filter`, values, {
         headers: {
             authorization: token ? token : null
         },
@@ -51,7 +51,6 @@ const favoriteRoute = async(id) => {
     })
     return (res.data)
 }
-
 
 const RoutesService = {
     getAllRoutes,

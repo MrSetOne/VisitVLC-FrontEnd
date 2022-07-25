@@ -1,0 +1,32 @@
+.Search {
+    background-color: #ece8d6;
+    min-height: calc(100vh - 5rem);
+    padding-top: 1.5rem;
+    .Search__Form {
+        display: flex;
+        flex-direction: column;
+        width: 95vw;
+        margin: 0 auto;
+        padding: 1.5rem;
+        background-color: white;
+        border-radius: .5rem;
+        >div {
+            margin-bottom: .5rem;
+            .ant-form-item-label {
+                padding-bottom: 0;
+            }
+        }
+        .Search__Form--submit {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 1rem;
+        }
+    }
+    .Result__Container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 1rem;
+        gap: 1rem;
+    }
+}
