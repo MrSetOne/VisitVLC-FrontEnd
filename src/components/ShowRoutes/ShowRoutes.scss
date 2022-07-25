@@ -1,5 +1,6 @@
 .ShowRoutes {
     background-color: #ece8d6;
+    min-height: calc(100vh - 5rem);
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;

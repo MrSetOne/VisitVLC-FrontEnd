@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getRouteByID } from "../../features/Routes/RoutesSlice";
+import Spinner from "../Spinner/Spinner";
 
 const MAP_TOKEN = process.env.REACT_APP_MAP_TOKEN;
 
@@ -31,7 +32,7 @@ const MapView = () => {
   }, [id]);
 
   return isLoadingRouteDetail ? (
-    <h1>Cargando...</h1>
+    <Spinner height={"60vh"} />
   ) : (
     <div className="map__fullContainer">
       <FontAwesomeIcon

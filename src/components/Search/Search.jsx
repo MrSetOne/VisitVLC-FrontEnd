@@ -4,22 +4,24 @@ import { filterRoute, resetHasRoute } from "../../features/Routes/RoutesSlice";
 import { useSelector, useDispatch } from "react-redux";
 import SearchResults from "./SearchResults/SearchResults";
 import "./Search.scss";
+import Spinner from "../Spinner/Spinner";
 const { Option } = Select;
 
 const Search = () => {
   const [form] = Form.useForm();
-  const { filteredRoutes, filterMessage, hasRoute } = useSelector((state) => state.routes);
+  const { filteredRoutes, filterMessage, hasRoute } = useSelector(
+    (state) => state.routes
+  );
   const [firstTime, setFirstTime] = useState(true);
 
-  console.log(filterMessage)
-
+  console.log(filterMessage);
 
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
     setFirstTime(false);
     dispatch(filterRoute(values));
-    dispatch(resetHasRoute())
+    dispatch(resetHasRoute());
   };
 
   return (
@@ -66,8 +68,11 @@ const Search = () => {
         {firstTime ? null : filteredRoutes.length === 0 ? (
           hasRoute ? (
             <h2>{filterMessage}</h2>
-          ) : (<h2>Cargando...</h2>)
-        ) : (filteredRoutes.map((item) => <SearchResults item={item} />)
+          ) : (
+            <Spinner width={"95vw"} height={"calc(100vh - 70rem)"} />
+          )
+        ) : (
+          filteredRoutes.map((item) => <SearchResults item={item} />)
         )}
       </div>
     </div>

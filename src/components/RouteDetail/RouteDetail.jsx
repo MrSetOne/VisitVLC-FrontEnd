@@ -11,6 +11,7 @@ import EvaluationsRoute from "./EvaluationsRoute/EvaluationsRoute";
 import PoiDetail from "./PoiDetail/PoiDetail";
 import { addToFav, removeToFav } from "../../features/auth/authSlice";
 import "./RouteDetail.scss";
+import Spinner from "../Spinner/Spinner";
 
 const RouteDetail = () => {
   const { id } = useParams();
@@ -34,7 +35,7 @@ const RouteDetail = () => {
   return (
     <section className="RouteDetail">
       {isLoadingRouteDetail ? (
-        <h1>Cargando...</h1>
+        <Spinner />
       ) : (
         <div>
           <h2 className="RouteDetail__title">{routeDetail.name}</h2>

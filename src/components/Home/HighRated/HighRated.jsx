@@ -13,6 +13,7 @@ import {
   faChartSimple,
 } from "@fortawesome/free-solid-svg-icons";
 import AIForm from "./AIForm/AIForm";
+import Spinner from "../../Spinner/Spinner";
 
 const HighRated = () => {
   const { highRated, isLoadingHighRated } = useSelector(
@@ -30,7 +31,7 @@ const HighRated = () => {
   return (
     <div className="HighRated">
       {isLoadingHighRated ? (
-        <h1>Cargando...</h1>
+        <Spinner height={"60vh"} />
       ) : (
         <>
           {user.AIAvailable ? (
