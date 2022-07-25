@@ -1,0 +1,30 @@
+.ProfileReviews {
+    display: flex;
+    background-color: transparent;
+    align-items: center;
+    border: 1px solid rgb(240, 240, 240);
+    width: 100%;
+    gap: 1rem;
+    img {
+        height: 10rem;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+    }
+    .ProfileReviews__info {
+        width: 100%;
+        .ProfileReviews__info--header {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            h5 {
+                font-size: 1.6rem;
+                text-align: start;
+                line-height: .8;
+            }
+        }
+        h3 {
+            font-size: 1.8rem;
+            text-align: start;
+        }
+    }
+}

@@ -3,6 +3,7 @@ import { getAllRoutes } from "../../features/Routes/RoutesSlice";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import ShowRoute from "./ShowRoute/ShowRoute";
 import "./ShowRoutes.scss";
+import { BackTop } from "antd";
 
 const ShowRoutes = () => {
   const { allRoutes, isLoadingAllRoutes } = useSelector(
@@ -20,6 +21,7 @@ const ShowRoutes = () => {
   return (
     <section className="ShowRoutes">
       {isLoadingAllRoutes ? <h1>Cargando...</h1> : show}
+      <BackTop />
     </section>
   );
 };
