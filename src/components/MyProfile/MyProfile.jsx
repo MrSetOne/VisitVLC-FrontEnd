@@ -27,6 +27,7 @@ const MyProfile = () => {
   };
 
   const onFinish = (values) => {
+    console.log(values)
     dispatch(updateUserData(values))
     setIsModalVisible(false)
   }
@@ -66,16 +67,35 @@ const MyProfile = () => {
         </Button>
         <Modal title="Editar tu información" visible={isModalVisible} footer={[]} onCancel={handleCancel}>
           <Form onFinish={onFinish} >
-            <Form.Item label='Nombre' name='firstName'>
+            <Form.Item label='Nombre' name='firstName'
+                      rules={[
+                        {
+                          required: true,
+                          message:'Por favor introduce tu nombre'
+                        }
+                      ]}>
               <Input placeholder={user.firstName} />
             </Form.Item>
-            <Form.Item label="Apellido" name='lastName'>
+            <Form.Item label="Apellido" name='lastName'
+                      rules={[
+                        {
+                          required: true,
+                          message:'Por favor introduce tu apellido'
+                        }
+                      ]}>
               <Input placeholder={user.lastName} />
             </Form.Item>
-            <Form.Item label="Género" name='gender'>
+            <Form.Item label="Género" name='gender'
+              rules={[
+                {
+                  required: true,
+                  message:'Por favor selecciona tu genero'
+                }
+              ]}
+              >
               <Select
                 style={{
-                  width: 120,
+                  width: 120
                 }}
               >
                 <Option value="Hombre">Hombre</Option>
