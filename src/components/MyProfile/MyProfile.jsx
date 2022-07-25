@@ -17,6 +17,9 @@ const MyProfile = () => {
         </h2>
         <FontAwesomeIcon icon={faUser} />
       </div>
+
+      {/* SHAN AQUI VA EL CODIGO!!! */}
+
       <div>
         <Segmented
           options={[
