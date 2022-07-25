@@ -41,19 +41,13 @@ const Search = () => {
           <Select placeholder="Selecciona una dificultad" allowClear>
             <Option value="Baja">Baja</Option>
             <Option value="Media">Media</Option>
-            <Option value="Difícil">Difícil</Option>¡{" "}
+            <Option value="NaN">Difícil</Option>¡{" "}
           </Select>
         </Form.Item>
-        <Form.Item name="duration" label="Duracion">
+        <Form.Item name="transport" label="Medio de transporte">
           <Select placeholder="Selecciona una duracion" allowClear>
-            <Option value="30 min.">30 min.</Option>
-            <Option value="60 min">60 min.</Option>
-            <Option value="105 min.">105 min.</Option>
-            <Option value="120 min.">120 min.</Option>
-            <Option value="180 min.">180 min.</Option>
-            <Option value="oth240 min.er">240 min.</Option>
-            <Option value="360 min.">360 min.</Option>
-            <Option value="420 min.">420 min.</Option>¡{" "}
+            <Option value="bicicleta">Bicicleta</Option>
+            <Option value="peu">A pie</Option>
           </Select>
         </Form.Item>
         <Form.Item noStyle>
