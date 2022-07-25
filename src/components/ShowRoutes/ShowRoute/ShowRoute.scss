@@ -1,24 +1,36 @@
-.ShowRoute{
-    margin: 1rem;
-    width: 15rem;
+.ShowRoute {
+    width: 100%;
     padding: 1rem;
-    border: 1px solid black;
-    border-radius: 1rem;
-    display: inline-flex;
+    border: none;
+    border-radius: .5rem;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: rgba(233, 230, 217, 0.811);
-    h2{
+    background-color: white;
+    h2 {
         font-size: 1.5rem;
         margin-bottom: 1rem;
+        flex: 1;
+        align-self: center
     }
-    p{
-        color: rgb(166, 160, 160);
+    img {
+        width: 100%;
+        aspect-ratio: 1.5/1;
+        object-fit: cover;
     }
-    img{
-        margin-top: 1rem;
-        max-width: 130px;
-        max-height: 120px;
+    >div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 1rem 0;
+        >div {
+            justify-self: center;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            * {
+                color: rgb(166, 160, 160);
+            }
+        }
     }
 }
