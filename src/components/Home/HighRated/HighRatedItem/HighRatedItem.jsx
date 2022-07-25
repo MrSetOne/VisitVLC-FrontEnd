@@ -34,7 +34,7 @@ const HighRatedItem = ({ item }) => {
           </div>
           <div className="difficulty">
             <FontAwesomeIcon icon={faChartSimple} />
-            <p>{item.difficulty}</p>
+            <p>{item.difficulty === "NaN" ? "alta" : item.difficulty}</p>
           </div>
         </div>
       </div>
