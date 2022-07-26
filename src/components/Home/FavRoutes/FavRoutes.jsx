@@ -8,6 +8,9 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getFavoritesRoutes } from "../../../features/auth/authSlice";
+import { Button } from 'antd';
+import './FavRoutes.scss'
+
 
 const FavRoutes = () => {
   const dispatch = useDispatch();
@@ -50,7 +53,11 @@ const FavRoutes = () => {
   return (
     <>
       {favoriteRoutes.length === 0 ?
-        <h2>Aún no has añadido ninguna ruta a la favoritas</h2>
+        <div className="favCont">
+          <h2>Aún no tienes ninguna ruta añadida a favoritos😪​...</h2>
+          <Button type="primary" className="fav-btn" onClick={() => navigate("/search")}>Buscar mi Ruta</Button>
+          <Button type="primary" className="fav-btn" onClick={() => navigate("/allroutes")}>Ver Todas las rutas</Button>
+        </div>
         :
         <div className="FavRoutes">{favorites}</div>}
     </>

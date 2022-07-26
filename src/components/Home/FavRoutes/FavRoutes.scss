@@ -1,0 +1,16 @@
+
+
+.favCont{
+    display: inline;
+    justify-content: center;
+    flex-direction: column;
+    h2{
+        font-size: 2.4rem;
+        margin: 1rem 0 0 1rem;
+    }
+    .fav-btn{
+        margin: 2rem 0 0 1rem;
+        width: 15rem;
+        height: 5rem;
+    }
+}
