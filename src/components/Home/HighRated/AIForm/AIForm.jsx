@@ -183,10 +183,6 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
     </div>,
   ];
 
-  const handleOk = () => {
-    setModalAIVisible(false);
-  };
-
   const handleCancel = () => {
     setModalAIVisible(false);
   };
@@ -203,8 +199,12 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
     <Modal
       title="Basic Modal"
       visible={modalAIVisible}
-      onOk={handleOk}
       onCancel={handleCancel}
+      footer={[
+        <Button key="back" onClick={handleCancel}>
+          Volver
+        </Button>
+      ]}
     >
       <Form
         className="Signup__Form"
@@ -213,6 +213,7 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
         initialValues={{
           remember: false,
         }}
+
       >
         <div>
           <Button

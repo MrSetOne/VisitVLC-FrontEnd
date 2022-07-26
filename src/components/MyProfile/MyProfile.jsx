@@ -173,6 +173,7 @@ const MyProfile = () => {
             >
               <Option value="Hombre">Hombre</Option>
               <Option value="Mujer">Mujer</Option>
+              <Option value="otro">Prefiero no decir</Option>
             </Select>
           </Form.Item>
           <Button type="primary" htmlType="submit">
