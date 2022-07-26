@@ -25,6 +25,7 @@ const Signup = ({ setNeedsignup }) => {
   const onFinish = async (values) => {
     form.resetFields();
     await dispatch(signUp({ ...values }));
+    dispatch(setNeedsignup())
   };
 
   const onFinishFailed = (errorInfo) => {
