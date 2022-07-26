@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Signup = ({ setNeedsignup }) => {
   const {
-    notification,
+    notification:feedback ,
     isLoading,
     isError,
   } = useSelector((state) => state.auth);
