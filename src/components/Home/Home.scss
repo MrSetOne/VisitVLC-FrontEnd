@@ -6,7 +6,8 @@
     .tab-menu {
         background-color: #ff6000;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        gap: 4rem;
         padding: 0 3rem;
         color: white;
         align-items: center;
@@ -27,7 +28,7 @@
         }
     }
     .content {
-        width: 90vw;
+        width: min(63rem, 90vw);
         height: calc(100vh - 10rem - 5.5rem);
         padding: 1rem;
         padding-top: 2rem;
@@ -79,6 +80,12 @@
         align-items: center;
         gap: 1rem;
         justify-content: space-evenly;
+        >div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: min(60vw, 50rem);
+        }
         .footer-btn {
             display: flex;
             flex-direction: column;

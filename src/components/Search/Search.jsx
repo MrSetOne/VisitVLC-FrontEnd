@@ -31,6 +31,7 @@ const Search = () => {
         form={form}
         name="control-hooks"
         onFinish={onFinish}
+        style={{ maxWidth: "50rem" }}
       >
         <Form.Item name="name" label="Nombre">
           <Input />

@@ -23,12 +23,12 @@ const ModalSiteDetail = ({
         footer={[
           <Button key="back" onClick={handleCancel}>
             Volver
-          </Button>
+          </Button>,
         ]}
       >
         <div className="modal-container">
           <h2>{place.name}</h2>
-          <p>{place.description_es}</p>
+          <p>{place.description_es !== "NaN" ? place.description_es : ""}</p>
         </div>
       </Modal>
     </>

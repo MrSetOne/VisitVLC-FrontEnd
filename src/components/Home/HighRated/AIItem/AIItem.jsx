@@ -57,6 +57,7 @@ const AIItem = () => {
             </p>
           </div>
         </div>
+        <p className="recomended__Caller">Pensamos que se adapta a ti...</p>
       </div>
     </button>
   );

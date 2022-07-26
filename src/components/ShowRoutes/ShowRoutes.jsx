@@ -21,8 +21,10 @@ const ShowRoutes = () => {
 
   return (
     <section className="ShowRoutes">
-      {isLoadingAllRoutes ? <Spinner width={"95vw"} /> : show}
-      <BackTop />
+      <div>
+        {isLoadingAllRoutes ? <Spinner width={"95vw"} /> : show}
+        <BackTop />
+      </div>
     </section>
   );
 };

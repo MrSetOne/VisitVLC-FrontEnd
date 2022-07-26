@@ -39,7 +39,7 @@ const RouteInfo = ({
       placement="right"
       onClose={() => setVisibleDrawer(!visibleDrawer)}
       visible={visibleDrawer}
-      width={"90vw"}
+      width={"min(90vw, 40rem)"}
     >
       <Steps
         current={current}

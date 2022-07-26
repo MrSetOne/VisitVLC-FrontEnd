@@ -1,9 +1,11 @@
 .HighRated,
 .FavRoutes {
     display: flex;
+    overflow: hidden;
     flex-direction: column;
     gap: .5rem;
     width: 100%;
+    position: relative;
     .HighRatedItem--IA {
         .route-btn__cover {
             background-color: #ff6000;
@@ -14,4 +16,15 @@
             }
         }
     }
+}
+
+.recomended__Caller {
+    position: absolute;
+    font-size: 2.5rem;
+    color: #ff6000;
+    background: white;
+    padding: .5rem 1rem;
+    top: 1rem;
+    left: -5px;
+    font-weight: 700;
 }

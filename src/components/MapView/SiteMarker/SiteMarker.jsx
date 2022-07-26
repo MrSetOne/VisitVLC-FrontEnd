@@ -34,7 +34,11 @@ const SiteMarker = ({ place, i, current }) => {
         <Popup>
           <div className="siteMarker-popup">
             <h2>{place.name}</h2>
-            <p>{truncateAfterWord(place.description_es, 83)}</p>
+            <p>
+              {place.description_es !== "NaN"
+                ? truncateAfterWord(place.description_es, 83)
+                : ""}
+            </p>
             <Button
               type="primary"
               block
