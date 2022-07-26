@@ -19,7 +19,7 @@ import "./MapFooter.scss";
 import { motion } from "framer-motion";
 import ModalSiteDetail from "../ModalSiteDetail/ModalSiteDetail";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Input, Rate, Modal, Form } from "antd";
+import { Button, Input, Rate, Modal, Form, Space } from "antd";
 import { useNavigate } from "react-router-dom";
 import { addToFav, removeToFav } from "../../../features/auth/authSlice";
 
@@ -40,9 +40,6 @@ const MapFooter = ({
   const navigate = useNavigate();
 
   const { TextArea } = Input;
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
 
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -110,8 +107,8 @@ const MapFooter = ({
                 onClick={
                   routeDetail.poi.length === current + 1
                     ? () => {
-                        showModal();
-                      }
+                      showModal();
+                    }
                     : () => setCurrent(current + 1)
                 }
               />
@@ -157,8 +154,7 @@ const MapFooter = ({
       <Modal
         title="Basic Modal"
         visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
+        footer={[]}
       >
         <Form onFinish={onFinish}>
           <Form.Item name="comment">
@@ -173,9 +169,14 @@ const MapFooter = ({
             <br />
             <br />
           </Form.Item>
-          <Button type="primary" htmlType="submit">
-            Publicar
-          </Button>
+          <Space>
+            <Button onClick={() => dispatch(navigate("/"))}>
+              Omitir
+            </Button>
+            <Button type="primary" htmlType="submit">
+              Publicar
+            </Button>
+          </Space>
         </Form>
       </Modal>
     </>

@@ -10,10 +10,6 @@ const ModalSiteDetail = ({
 }) => {
   const { routeDetail } = useSelector((state) => state.routes);
 
-  const handleOk = () => {
-    console.log("le has dado a ok");
-  };
-
   const handleCancel = () => {
     setVisibleModalDetail(false);
   };
@@ -23,23 +19,11 @@ const ModalSiteDetail = ({
       <Modal
         visible={visibleModalDetail}
         title={routeDetail.name}
-        onOk={handleOk}
         onCancel={handleCancel}
         footer={[
           <Button key="back" onClick={handleCancel}>
             Volver
-          </Button>,
-          <Button key="submit" type="primary" onClick={handleOk}>
-            Puntuar
-          </Button>,
-          <Button
-            key="link"
-            href="https://google.com"
-            type="primary"
-            onClick={handleOk}
-          >
-            Search on Google
-          </Button>,
+          </Button>
         ]}
       >
         <div className="modal-container">
