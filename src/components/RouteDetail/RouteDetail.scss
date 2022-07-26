@@ -7,7 +7,7 @@
     padding-top: 1rem;
     >div {
         background-color: white;
-        width: 95vw;
+        width: min(50rem, 95vw);
         border-radius: .5rem;
         padding: 1rem;
         .RouteDetail__title {
