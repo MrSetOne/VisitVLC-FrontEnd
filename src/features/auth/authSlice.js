@@ -12,6 +12,7 @@ const initialState = {
     isSucces: false,
     isSuccesLogOut: false,
     isError: false,
+    isLoadingAI: false,
     notification: "",
     favoriteRoutes: [],
     evaluations: []
@@ -68,6 +69,14 @@ export const updateUserData = createAsyncThunk('auth/updateUserData', async(data
 export const changeUserPassword = createAsyncThunk('auth/changeUserPassword', async(newPassword, thunkAPI) => {
     try {
         return await authService.changeUserPassword(newPassword)
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data)
+    }
+})
+
+export const setAiOn = createAsyncThunk('auth/setAiOn', async(data, thunkAPI) => {
+    try {
+        return await authService.setAiOn(data)
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data)
     }
@@ -147,6 +156,18 @@ export const authSlice = createSlice({
                 state.user = null;
                 state.token = null;
                 state.favoriteRoutes = []
+            })
+            .addCase(setAiOn.pending, (state, action) => {
+                state.isLoadingAI = true
+            })
+            .addCase(setAiOn.fulfilled, (state, action) => {
+                state.isLoadingAI = false
+                console.log(action.payload)
+                state.user = {...state.user, AIAvailable: action.payload.AIAvailable, recomendedRoute: action.payload.recomendedRoute }
+            })
+            .addCase(setAiOn.rejected, (state, action) => {
+                state.isLoadingAI = false
+                console.log(action.payload)
             })
     },
 })

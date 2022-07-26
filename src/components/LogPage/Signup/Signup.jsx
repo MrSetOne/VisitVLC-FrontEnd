@@ -6,9 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Signup = ({ setNeedsignup }) => {
   const {
-    notification:feedback ,
+    notification: feedback,
     isLoading,
     isError,
+    isSucces,
   } = useSelector((state) => state.auth);
 
   const dataInit = {
@@ -23,12 +24,19 @@ const Signup = ({ setNeedsignup }) => {
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
-    form.resetFields();
     await dispatch(signUp({ ...values }));
-    // setTimeout(() => {
-    //   dispatch(setNeedsignup())
-    // }, 1000)
   };
+
+  useEffect(() => {
+    if (isSucces) {
+      form.resetFields();
+      setTimeout(() => {
+        console.log("Voy a petar");
+        dispatch(resetNotifications());
+        setNeedsignup(false);
+      }, 1000);
+    }
+  }, [feedback]);
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
