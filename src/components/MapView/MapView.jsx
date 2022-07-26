@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
-import data from "../../assets/data.json";
 import "./MapView.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfo, faChevronUp } from "@fortawesome/free-solid-svg-icons";

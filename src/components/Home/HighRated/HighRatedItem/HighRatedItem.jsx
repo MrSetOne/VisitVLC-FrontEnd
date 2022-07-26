@@ -1,10 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faMapLocationDot,
-  faFilter,
   faLocationDot,
-  faPlaceOfWorship,
   faClock,
   faChartSimple,
 } from "@fortawesome/free-solid-svg-icons";

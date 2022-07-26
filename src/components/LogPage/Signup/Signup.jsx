@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import { Form, Button, notification, Input } from "antd";
+import { Form, Button, Input } from "antd";
 import "./Signup.scss";
-import { signUp, resetNotifications } from "../../../features/auth/authSlice";
+import { signUp } from "../../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Signup = ({ setNeedsignup }) => {
@@ -84,7 +83,7 @@ const Signup = ({ setNeedsignup }) => {
             {
               required: true,
               type: "email",
-              message: "Introduce un email valido",
+              message: "Introduce un email válido",
             },
           ]}
         >

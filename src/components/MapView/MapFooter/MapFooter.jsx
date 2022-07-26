@@ -27,7 +27,6 @@ const MapFooter = ({
   setVisibleFooter,
   setCurrent,
   current,
-  routeLength,
   id,
 }) => {
   const [visibleModalDetail, setVisibleModalDetail] = useState(false);

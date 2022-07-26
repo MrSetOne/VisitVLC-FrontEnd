@@ -29,12 +29,10 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
 
   const onChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
-    console.log(value);
   };
 
   const onChangeDate = (date, dateString) => {
     setValue({ ...value, age: dateString });
-    console.log(value);
   };
 
   const disabledDate = (current) => {
@@ -43,7 +41,6 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
 
   const onChangeTime = (num, type) => {
     setValue({ ...value, [type]: num });
-    console.log(value);
   };
 
   const dispatch = useDispatch();
@@ -54,9 +51,9 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
         Antes de continuar...
       </h2>
       <p>
-        Para poderte recomendar una ruta necesitamos saber algunos datos mas de
-        tí, no estás obligado a contestar si no quieres, pero cuanta mas
-        informacion tengamos mejor te podremos aconsejar...
+        Para poderte recomendar una ruta necesitamos saber algunos datos más sobre
+        ti. No estás obligado a contestar si no quieres, pero cuanta más
+        información nos proporciones mejor te podremos aconsejar...
       </p>
     </>,
     <Form.Item noStyle name="age">
@@ -69,7 +66,7 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
       />
     </Form.Item>,
     <Form.Item noStyle name="gender">
-      <h3>¿Cual es tu genero?</h3>
+      <h3>¿Cual es tu género?</h3>
       <Radio.Group
         onChange={onChange}
         name="gender"
@@ -98,7 +95,7 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
       </Radio.Group>
     </Form.Item>,
     <Form.Item noStyle name="duration">
-      <h3>¿Que duracion prefieres?</h3>
+      <h3>¿Que duración prefieres?</h3>
       <div style={{ display: "flex", justifyContent: "center", gap: "2rem" }}>
         <div>
           <p>Horas</p>
@@ -136,7 +133,7 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
         <Space direction="vertical">
           <Radio value={"Gratis"}>Nada</Radio>
           <Radio value={"1-50"}>Entre 1€ y 50€</Radio>
-          <Radio value={"+50"}>Mas de 50€</Radio>
+          <Radio value={"+50"}>Más de 50€</Radio>
         </Space>
       </Radio.Group>
     </Form.Item>,
@@ -175,7 +172,7 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
       >
         <Space direction="vertical">
           <Radio value={"Historica"}>Historica</Radio>
-          <Radio value={"Turistica"}>Turistica</Radio>
+          <Radio value={"Turistica"}>Turística</Radio>
           <Radio value={"Literaria"}>Literaria</Radio>
           <Radio value={"Patrimonio"}>Patrimonio</Radio>
         </Space>

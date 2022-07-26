@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import L, { Icon } from "leaflet";
+import L from "leaflet";
 import { Marker } from "react-leaflet";
 import me from "../../../assets/Pins/me.svg";
 

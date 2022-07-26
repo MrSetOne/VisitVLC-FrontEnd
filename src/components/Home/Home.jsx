@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Home.scss";
 import {
   faMapLocationDot,
-  faPlaceOfWorship,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
@@ -38,7 +37,7 @@ const Home = () => {
     <div className="Home">
       <div className="tab-menu">
         <button onClick={() => goto("HighRated")}>Mejor Valoradas</button>
-        <button onClick={() => goto("FavRoutes")}>Rutas favoritas</button>
+        <button onClick={() => goto("FavRoutes")}>Rutas Favoritas</button>
         <motion.div className="tab-menu__tab" animate={tabBar} />
       </div>
       <div className="content">{content}</div>

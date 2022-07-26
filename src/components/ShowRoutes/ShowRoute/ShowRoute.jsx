@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./ShowRoute.scss";
 
 const ShowRoute = ({ route }) => {
@@ -24,7 +24,7 @@ const ShowRoute = ({ route }) => {
         </div>
         <div>
           <FontAwesomeIcon icon={faClock} />
-          <p>{route.duration}min.</p>
+          <p>{route.duration} min.</p>
         </div>
         <div>
           <FontAwesomeIcon icon={faChartSimple} />
