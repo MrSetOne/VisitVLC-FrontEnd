@@ -2,9 +2,7 @@ import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { logIn } from "../../../features/auth/authSlice";
 import { Button, Form, Input, notification } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { resetNotifications } from "../../../features/auth/authSlice";
 import "./Login.scss";
-import { useEffect } from "react";
 
 const Login = ({ setNeedsignup }) => {
   const {
@@ -19,29 +17,6 @@ const Login = ({ setNeedsignup }) => {
   const onFinish = (values) => {
     dispatch(logIn(values));
   };
-
-  // useEffect(() => {
-  //   if (isSucces) {
-  //     notification.success({
-  //       message: "Wellcome",
-  //       description: feedback,
-  //       placement: "bottom",
-  //     });
-  //     setTimeout(() => {
-  //       dispatch(resetNotifications());
-  //     }, 2000);
-  //   }
-  //   if (isError) {
-  //     notification.error({
-  //       message: "Something has gone wrong...",
-  //       description: feedback,
-  //       placement: "bottom",
-  //     });
-  //     setTimeout(() => {
-  //       dispatch(resetNotifications());
-  //     }, 2000);
-  //   }
-  // }, [feedback]);
 
   return (
     <div className="Login">

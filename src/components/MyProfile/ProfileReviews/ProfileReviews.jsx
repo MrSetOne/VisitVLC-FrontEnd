@@ -1,19 +1,12 @@
-import {
-  faBicycle,
-  faChartSimple,
-  faClock,
-  faLocationPin,
-  faPersonWalking,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Rate } from "antd";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./ProfileReviews.scss";
 
 const ProfileReviews = ({ review }) => {
-  console.log(review);
+  const navigate = useNavigate();
   return (
-    <button className="ProfileReviews">
+    <button className="ProfileReviews" onClick={() => navigate(`/route/${review.route_id}`)}>
       <img src={review.image} alt={review.name} />
       <div className="ProfileReviews__info">
         <div className="ProfileReviews__info--header">

@@ -5,10 +5,7 @@ import HighRatedItem from "./HighRatedItem/HighRatedItem";
 import "./HighRated.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faMapLocationDot,
-  faFilter,
   faLocationDot,
-  faPlaceOfWorship,
   faClock,
   faChartSimple,
 } from "@fortawesome/free-solid-svg-icons";

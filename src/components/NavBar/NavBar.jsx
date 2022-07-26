@@ -7,7 +7,6 @@ import { logOut, resetNotifications } from "../../features/auth/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleXmark,
-  faCrown,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
@@ -61,7 +60,7 @@ const NavBar = () => {
           label: (
             <div className="Dropdown__Item" onClick={() => goTo("/profile")}>
               <FontAwesomeIcon icon={faUser} />
-              <p>Mi perfil</p>
+              <p>Mi Perfil</p>
             </div>
           ),
           key: "0",
@@ -86,7 +85,7 @@ const NavBar = () => {
                 onClick={() => setShowPopConfirm(!showPopConfirm)}
               >
                 <FontAwesomeIcon icon={faCircleXmark} />
-                <p>Cerrar sesión</p>
+                <p>Cerrar Sesión</p>
               </div>
             </Popconfirm>
           ),

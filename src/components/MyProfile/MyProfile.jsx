@@ -8,7 +8,6 @@ import {
   changeUserPassword,
   getCurrentUser,
   updateUserData,
-  getFavoritesRoutes,
 } from "../../features/auth/authSlice";
 import ProfileFavs from "./ProfileFavs/ProfileFavs";
 import ProfileReviews from "./ProfileReviews/ProfileReviews";
@@ -65,10 +64,10 @@ const MyProfile = () => {
       </div>
       <div className="MyProfile__Btns">
         <Button type="primary" onClick={showModal}>
-          Editar perfil
+          Editar Perfil
         </Button>
         <Button type="primary" onClick={showModal1}>
-          Cambiar contraseña
+          Cambiar Contraseña
         </Button>
       </div>
       <div className="MyProfile__Interactions">
@@ -80,7 +79,7 @@ const MyProfile = () => {
               label: (
                 <div className="Segmented__option">
                   <FontAwesomeIcon icon={faHeart} />
-                  <p>Rutas favoritas</p>
+                  <p>Rutas Favoritas</p>
                 </div>
               ),
               value: "fav",
@@ -89,7 +88,7 @@ const MyProfile = () => {
               label: (
                 <div className="Segmented__option">
                   <FontAwesomeIcon icon={faStar} />
-                  <p>Mis valoraciones</p>
+                  <p>Mis Valoraciones</p>
                 </div>
               ),
               value: "review",
@@ -99,7 +98,7 @@ const MyProfile = () => {
         <div className="MyProfile__Interactions--content">
           {segment === "fav"
             ? favoriteRoutes.map((route) => <ProfileFavs route={route} />)
-            : evaluations.map((review) => <ProfileReviews review={review} />)}
+            : evaluations.map((review) => <ProfileReviews review={review}  />)}
         </div>
       </div>
       <Modal

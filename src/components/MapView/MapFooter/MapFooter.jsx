@@ -27,7 +27,6 @@ const MapFooter = ({
   setVisibleFooter,
   setCurrent,
   current,
-  routeLength,
   id,
 }) => {
   const [visibleModalDetail, setVisibleModalDetail] = useState(false);
@@ -152,7 +151,7 @@ const MapFooter = ({
         place={routeDetail.poi[current]}
       />
       <Modal
-        title="Basic Modal"
+        title="Valora esta Ruta"
         visible={isModalVisible}
         footer={[]}
       >

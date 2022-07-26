@@ -10,7 +10,6 @@ import NavBar from "./components/NavBar/NavBar";
 import MyProfile from "./components/MyProfile/MyProfile";
 import ShowRoutes from "./components/ShowRoutes/ShowRoutes";
 import RouteDetail from "./components/RouteDetail/RouteDetail";
-import Places from "./components/Places/Places";
 import Search from "./components/Search/Search";
 import { getCurrentUser } from "./features/auth/authSlice";
 
@@ -35,7 +34,6 @@ function App() {
             <Route path="/profile" element={<MyProfile />} />
             <Route path="/allroutes" element={<ShowRoutes />} />
             <Route path="/route/:id" element={<RouteDetail />} />
-            <Route path="/places" element={<Places />} />
             <Route path="/search" element={<Search />} />
           </Routes>
         </>

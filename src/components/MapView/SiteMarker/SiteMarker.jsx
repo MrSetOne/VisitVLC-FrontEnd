@@ -1,14 +1,11 @@
 import { Marker, Popup } from "react-leaflet";
-import L, { Icon } from "leaflet";
+import L from "leaflet";
 import { Button } from "antd";
 import "./SiteMarker.scss";
 import { useState } from "react";
 import ModalSiteDetail from "../ModalSiteDetail/ModalSiteDetail";
 
 const SiteMarker = ({ place, i, current }) => {
-  console.log("current: " + current);
-  console.log("i: " + i);
-  console.log(place);
 
   const [visibleModalDetail, setVisibleModalDetail] = useState(false);
 
