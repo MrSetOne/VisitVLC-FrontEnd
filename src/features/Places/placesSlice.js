@@ -18,16 +18,8 @@ export const getAllPlaces = createAsyncThunk('places/getAllPlaces', async(thunkA
 export const placesSlice = createSlice({
     name: "places",
     initialState,
-    reducers: {
-
-
-        // addLike: (state, action) => {
-        //     state.user.likedPosts.push(action.payload)
-        // },
-    },
+    reducers: {},
     extraReducers: (builder) => {
-        // * EJEMPLO DE EXTRA REDUCER CON CICLO DE VIDA COMPLETO
-
         builder
             .addCase(getAllPlaces.pending, (state, action) => {
                 state.isLoadingAllPlaces = true
@@ -39,21 +31,7 @@ export const placesSlice = createSlice({
             .addCase(getAllPlaces.rejected, (state, action) => {
                 state.isLoadingAllPlaces = false
             })
-
-        // builder
-        // .addCase(getById.pending, (state) => {
-        //     state.isLoading = true
-        // })
-        // .addCase(getById.fulfilled, (state, action) => {
-        //     state.userDisplayed = action.payload.foundUser
-        //     state.isLoading = false
-        // })
-        // .addCase(getById.rejected, (state, action) => {
-        //     state.loadingFailed = true
-        // })
     },
 })
-
-// export const { setPreload } = routesSlice.actions;
 
 export default placesSlice.reducer

@@ -31,7 +31,6 @@ const Signup = ({ setNeedsignup }) => {
     if (isSucces) {
       form.resetFields();
       setTimeout(() => {
-        console.log("Voy a petar");
         dispatch(resetNotifications());
         setNeedsignup(false);
       }, 1000);

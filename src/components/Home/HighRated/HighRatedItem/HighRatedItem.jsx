@@ -10,8 +10,6 @@ import { useNavigate } from "react-router-dom";
 
 const HighRatedItem = ({ item }) => {
   const navigate = useNavigate();
-  console.log(item);
-
   return (
     <button
       className="HighRatedItem"

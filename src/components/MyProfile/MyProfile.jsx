@@ -98,10 +98,11 @@ const MyProfile = () => {
         <div className="MyProfile__Interactions--content">
           {segment === "fav"
             ? favoriteRoutes.map((route) => <ProfileFavs route={route} />)
-            : evaluations.map((review) => <ProfileReviews review={review}  />)}
+            : evaluations.map((review) => <ProfileReviews review={review} />)}
         </div>
       </div>
       <Modal
+        centered
         title="Cambia tu contraseña"
         visible={isModalVisiblePassword}
         footer={[]}
@@ -151,6 +152,7 @@ const MyProfile = () => {
         </Form>
       </Modal>
       <Modal
+        centered
         title="Editar tu información"
         visible={isModalVisible}
         footer={[]}

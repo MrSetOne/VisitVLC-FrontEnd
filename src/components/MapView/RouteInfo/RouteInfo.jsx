@@ -7,8 +7,6 @@ const RouteInfo = ({
   current,
   setCurrent,
 }) => {
-  console.log(data);
-
   const { Step } = Steps;
   const { Paragraph } = Typography;
 

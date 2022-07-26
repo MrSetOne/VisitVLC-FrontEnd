@@ -11,7 +11,6 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const SearchResults = ({ item }) => {
-  console.log(item);
   const navigate = useNavigate();
   return (
     <button

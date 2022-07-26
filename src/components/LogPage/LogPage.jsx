@@ -18,9 +18,6 @@ const LogPage = () => {
     isError,
   } = useSelector((state) => state.auth);
 
-  console.log(isError)
-  console.log(feedback)
-
   useEffect(() => {
     if (isError) {
       notification.error({

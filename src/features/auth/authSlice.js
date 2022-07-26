@@ -127,7 +127,6 @@ export const authSlice = createSlice({
                 state.notification = action.payload.message;
             })
             .addCase(signUp.rejected, (state, action) => {
-                console.log(action)
                 state.isLoading = false
                 state.isError = true
                 state.notification = action.payload;
@@ -162,12 +161,10 @@ export const authSlice = createSlice({
             })
             .addCase(setAiOn.fulfilled, (state, action) => {
                 state.isLoadingAI = false
-                console.log(action.payload)
                 state.user = {...state.user, AIAvailable: action.payload.AIAvailable, recomendedRoute: action.payload.recomendedRoute }
             })
             .addCase(setAiOn.rejected, (state, action) => {
                 state.isLoadingAI = false
-                console.log(action.payload)
             })
     },
 })

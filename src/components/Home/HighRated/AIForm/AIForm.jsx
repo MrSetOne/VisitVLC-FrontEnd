@@ -51,8 +51,8 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
         Antes de continuar...
       </h2>
       <p>
-        Para poderte recomendar una ruta necesitamos saber algunos datos más sobre
-        ti. No estás obligado a contestar si no quieres, pero cuanta más
+        Para poderte recomendar una ruta necesitamos saber algunos datos más
+        sobre ti. No estás obligado a contestar si no quieres, pero cuanta más
         información nos proporciones mejor te podremos aconsejar...
       </p>
     </>,
@@ -203,13 +203,14 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
 
   return (
     <Modal
-      title="Basic Modal"
+      centered
+      title="Cuentanos..."
       visible={modalAIVisible}
       onCancel={handleCancel}
       footer={[
         <Button key="back" onClick={handleCancel}>
           Volver
-        </Button>
+        </Button>,
       ]}
     >
       <Form
@@ -219,7 +220,6 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
         initialValues={{
           remember: false,
         }}
-
       >
         <div>
           <Button

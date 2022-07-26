@@ -42,7 +42,6 @@ export const getRouteByID = createAsyncThunk('routes/getRouteByID', async(id, th
 })
 
 export const filterRoute = createAsyncThunk('routes/filterRoute', async(values, thunkAPI) => {
-    console.log(values)
     try {
         return await routesService.filterRoute(values)
     } catch (error) {
@@ -78,17 +77,11 @@ export const routesSlice = createSlice({
     name: "routes",
     initialState,
     reducers: {
-
         resetHasRoute: (state) => {
-                state.hasRoute = false
-            }
-            // addLike: (state, action) => {
-            //     state.user.likedPosts.push(action.payload)
-            // },
+            state.hasRoute = false
+        }
     },
     extraReducers: (builder) => {
-        // * EJEMPLO DE EXTRA REDUCER CON CICLO DE VIDA COMPLETO
-
         builder
             .addCase(getAllRoutes.pending, (state, action) => {
                 state.isLoadingAllRoutes = true
@@ -143,21 +136,8 @@ export const routesSlice = createSlice({
                 state.isLoadingRecomendedRoute = false
                 state.recomenendedRoute = {...action.payload.route, averageScore: action.payload.averageScore }
             })
-            // builder
-            // .addCase(getById.pending, (state) => {
-            //     state.isLoading = true
-            // })
-            // .addCase(getById.fulfilled, (state, action) => {
-            //     state.userDisplayed = action.payload.foundUser
-            //     state.isLoading = false
-            // })
-            // .addCase(getById.rejected, (state, action) => {
-            //     state.loadingFailed = true
-            // })
     },
 })
-
-// export const { setPreload } = routesSlice.actions;
 
 export const { resetHasRoute } = routesSlice.actions;
 

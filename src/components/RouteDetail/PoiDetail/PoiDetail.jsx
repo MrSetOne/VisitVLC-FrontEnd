@@ -3,7 +3,6 @@ import { Typography } from "antd";
 const { Paragraph } = Typography;
 
 const PoiDetail = ({ poi }) => {
-  console.log(poi);
   return (
     <li>
       <Paragraph

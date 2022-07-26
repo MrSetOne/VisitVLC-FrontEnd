@@ -23,12 +23,7 @@ import { Button, Input, Rate, Modal, Form, Space } from "antd";
 import { useNavigate } from "react-router-dom";
 import { addToFav, removeToFav } from "../../../features/auth/authSlice";
 
-const MapFooter = ({
-  setVisibleFooter,
-  setCurrent,
-  current,
-  id,
-}) => {
+const MapFooter = ({ setVisibleFooter, setCurrent, current, id }) => {
   const [visibleModalDetail, setVisibleModalDetail] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [rating, setRating] = useState(0);
@@ -151,6 +146,7 @@ const MapFooter = ({
         place={routeDetail.poi[current]}
       />
       <Modal
+        centered
         title="¿Que tal ha ido?"
         visible={isModalVisible}
         onCancel={() => setIsModalVisible(false)}

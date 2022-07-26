@@ -14,8 +14,6 @@ const Search = () => {
   );
   const [firstTime, setFirstTime] = useState(true);
 
-  console.log(filterMessage);
-
   const dispatch = useDispatch();
 
   const onFinish = (values) => {

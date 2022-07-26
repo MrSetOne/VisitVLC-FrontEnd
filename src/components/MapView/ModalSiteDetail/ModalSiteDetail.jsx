@@ -17,6 +17,7 @@ const ModalSiteDetail = ({
   return (
     <>
       <Modal
+        centered
         visible={visibleModalDetail}
         title={routeDetail.name}
         onCancel={handleCancel}
