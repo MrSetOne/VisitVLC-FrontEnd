@@ -48,7 +48,7 @@ const Signup = ({ setNeedsignup }) => {
         className="Signup__Form"
         requiredMark={false}
         onFinish={onFinish}
-        // form={form}
+        form={form}
         initialValues={{
           remember: false,
         }}
