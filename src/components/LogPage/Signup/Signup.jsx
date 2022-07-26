@@ -20,7 +20,15 @@ const Signup = ({ setNeedsignup }) => {
   };
 
   const dispatch = useDispatch();
+  const [form] = Form.useForm();
 
+  const onFinish = async (values) => {
+    form.resetFields();
+    await dispatch(signUp({ ...values }));
+    // setTimeout(() => {
+    //   dispatch(setNeedsignup())
+    // }, 1000)
+  };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -32,7 +40,7 @@ const Signup = ({ setNeedsignup }) => {
         className="Signup__Form"
         requiredMark={false}
         onFinish={onFinish}
-        form={form}
+        // form={form}
         initialValues={{
           remember: false,
         }}
