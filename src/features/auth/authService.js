@@ -80,6 +80,16 @@ const changeUserPassword = async(newPassword) => {
     return res.data
 }
 
+const setAiOn = async(data) => {
+    const token = JSON.parse(localStorage.getItem("token"));
+    const res = await axios.put(`${API_URL}/users/fullUserInfo`, data, {
+        headers: {
+            authorization: token ? token : null
+        },
+    })
+    return res.data
+}
+
 const authService = {
     login,
     signUp,
@@ -87,7 +97,8 @@ const authService = {
     getFavoritesRoutes,
     getCurrentUser,
     updateUserData,
-    changeUserPassword
+    changeUserPassword,
+    setAiOn
 }
 
 export default authService

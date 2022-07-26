@@ -16,9 +16,12 @@ import {
 } from "antd";
 import React, { useState } from "react";
 import "./AIForm.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { setAiOn } from "../../../../features/auth/authSlice";
 
 const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
   const [value, setValue] = useState("");
+  const { isLoadingAI } = useSelector((state) => state.auth);
 
   const [step, setStep] = useState(0);
 
@@ -39,6 +42,8 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
   const onChangeTime = (num, type) => {
     setValue({ ...value, [type]: num });
   };
+
+  const dispatch = useDispatch();
 
   const questions = [
     <>
@@ -68,9 +73,9 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
         defaultValue={value.gender}
       >
         <Space direction="vertical">
-          <Radio value={"Hombre"}>Hombre</Radio>
-          <Radio value={"Mujer"}>Mujer</Radio>
-          <Radio value={"Otro"}>Prefiero no decirlo</Radio>
+          <Radio value={"hombre"}>Hombre</Radio>
+          <Radio value={"mujer"}>Mujer</Radio>
+          <Radio value={"otro"}>Prefiero no decirlo</Radio>
         </Space>
       </Radio.Group>
     </Form.Item>,
@@ -175,8 +180,10 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
     </Form.Item>,
     <div>
       <h2>¡Ya casi has acabado!</h2>
-      <p>¿Deseas confirmar el envío de los datos?</p>
-      <Button type="primary">Enviar</Button>
+      <p>¿Desea confirmar el envio de los datos?</p>
+      <Button type="primary" loading={isLoadingAI} onClick={() => onFinish()}>
+        Enviar
+      </Button>
     </div>,
   ];
 
@@ -184,8 +191,10 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
     setModalAIVisible(false);
   };
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const onFinish = async () => {
+    const result = { ...value, duration: value.hours * 60 + value.mins };
+    await dispatch(setAiOn(result));
+    setModalAIVisible(false);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -206,7 +215,7 @@ const AIForm = ({ modalAIVisible, setModalAIVisible }) => {
       <Form
         className="Signup__Form"
         requiredMark={false}
-        onFinish={onFinish}
+        onFinish={() => onFinish()}
         initialValues={{
           remember: false,
         }}

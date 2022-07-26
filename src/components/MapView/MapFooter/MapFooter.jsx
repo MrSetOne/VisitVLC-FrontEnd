@@ -106,8 +106,8 @@ const MapFooter = ({
                 onClick={
                   routeDetail.poi.length === current + 1
                     ? () => {
-                      showModal();
-                    }
+                        showModal();
+                      }
                     : () => setCurrent(current + 1)
                 }
               />
@@ -151,8 +151,9 @@ const MapFooter = ({
         place={routeDetail.poi[current]}
       />
       <Modal
-        title="Valora esta Ruta"
+        title="¿Que tal ha ido?"
         visible={isModalVisible}
+        onCancel={() => setIsModalVisible(false)}
         footer={[]}
       >
         <Form onFinish={onFinish}>
@@ -169,9 +170,7 @@ const MapFooter = ({
             <br />
           </Form.Item>
           <Space>
-            <Button onClick={() => dispatch(navigate("/"))}>
-              Omitir
-            </Button>
+            <Button onClick={() => dispatch(navigate("/"))}>Omitir</Button>
             <Button type="primary" htmlType="submit">
               Publicar
             </Button>

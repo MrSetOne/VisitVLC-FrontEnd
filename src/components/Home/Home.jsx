@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, transform } from "framer-motion";
 import HighRated from "./HighRated/HighRated";
 import FavRoutes from "./FavRoutes/FavRoutes";
 
@@ -14,8 +14,8 @@ const Home = () => {
   const navigate = useNavigate();
 
   const [tabBar, setTabBar] = useState({
-    width: 113,
-    left: 0 + 30,
+    translateX: -72,
+    width: 117,
   });
 
   const [content, setContent] = useState(<HighRated />);
@@ -24,12 +24,12 @@ const Home = () => {
     if (dest === "HighRated") {
       setContent(<HighRated />);
       setTabBar({
-        width: 113,
-        left: 0 + 30,
+        translateX: -72,
+        width: 117,
       });
     } else if (dest === "FavRoutes") {
       setContent(<FavRoutes />);
-      setTabBar({ width: 105, left: "calc(100% - 105px - 30px)" });
+      setTabBar({ width: 105, translateX: 77 });
     }
   };
 
@@ -42,17 +42,19 @@ const Home = () => {
       </div>
       <div className="content">{content}</div>
       <footer className="footer">
-        <button className="footer-btn">
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            onClick={() => navigate("/search")}
-          />
-          Buscar
-        </button>
-        <button className="footer-btn" onClick={() => navigate("/allroutes")}>
-          <FontAwesomeIcon icon={faMapLocationDot} />
-          Todas las rutas
-        </button>
+        <div>
+          <button className="footer-btn">
+            <FontAwesomeIcon
+              icon={faMagnifyingGlass}
+              onClick={() => navigate("/search")}
+            />
+            Buscar
+          </button>
+          <button className="footer-btn" onClick={() => navigate("/allroutes")}>
+            <FontAwesomeIcon icon={faMapLocationDot} />
+            Todas las rutas
+          </button>
+        </div>
       </footer>
     </div>
   );

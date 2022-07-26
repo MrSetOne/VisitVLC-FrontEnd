@@ -33,3 +33,22 @@
         }
     }
 }
+
+@media (min-width: 550px) {
+    .HighRatedItem,
+    .FavRoutes__item {
+        height: unset;
+        aspect-ratio: 2/1;
+        .route-btn__cover {
+            .title {
+                font-size: 2.5rem;
+            }
+            .data {
+                font-size: 2rem;
+                svg {
+                    font-size: 5rem;
+                }
+            }
+        }
+    }
+}
