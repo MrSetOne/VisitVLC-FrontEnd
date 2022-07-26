@@ -20,7 +20,7 @@
 
 .recomended__Caller {
     position: absolute;
-    font-size: 2.5rem;
+    font-size: clamp(1.4rem, 3vw, 2.5rem);
     color: #ff6000;
     background: white;
     padding: .5rem 1rem;
