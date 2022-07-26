@@ -12,10 +12,12 @@ const initialState = {
     isLoadingFav: false,
     filteredRoutes: [],
     hasRoute: false,
-    filterMessage: ""
+    filterMessage: "",
+    recomenendedRoute: {},
+    isLoadingRecomendedRoute: true,
 }
 
-export const getAllRoutes = createAsyncThunk('routes/getAllRoutes', async (thunkAPI) => {
+export const getAllRoutes = createAsyncThunk('routes/getAllRoutes', async(thunkAPI) => {
     try {
         return await routesService.getAllRoutes()
     } catch (error) {
@@ -23,7 +25,7 @@ export const getAllRoutes = createAsyncThunk('routes/getAllRoutes', async (thunk
     }
 })
 
-export const getHighRatedRoutes = createAsyncThunk('routes/getHighRatedRoutes', async (thunkAPI) => {
+export const getHighRatedRoutes = createAsyncThunk('routes/getHighRatedRoutes', async(thunkAPI) => {
     try {
         return await routesService.getHighRatedRoutes()
     } catch (error) {
@@ -31,7 +33,7 @@ export const getHighRatedRoutes = createAsyncThunk('routes/getHighRatedRoutes', 
     }
 })
 
-export const getRouteByID = createAsyncThunk('routes/getRouteByID', async (id, thunkAPI) => {
+export const getRouteByID = createAsyncThunk('routes/getRouteByID', async(id, thunkAPI) => {
     try {
         return await routesService.getRouteByID(id)
     } catch (error) {
@@ -39,7 +41,7 @@ export const getRouteByID = createAsyncThunk('routes/getRouteByID', async (id, t
     }
 })
 
-export const filterRoute = createAsyncThunk('routes/filterRoute', async (values, thunkAPI) => {
+export const filterRoute = createAsyncThunk('routes/filterRoute', async(values, thunkAPI) => {
     console.log(values)
     try {
         return await routesService.filterRoute(values)
@@ -48,7 +50,7 @@ export const filterRoute = createAsyncThunk('routes/filterRoute', async (values,
     }
 })
 
-export const favoriteRoute = createAsyncThunk('routes/addToFavorite', async (id, thunkAPI) => {
+export const favoriteRoute = createAsyncThunk('routes/addToFavorite', async(id, thunkAPI) => {
     try {
         return await routesService.favoriteRoute(id)
     } catch (error) {
@@ -56,9 +58,17 @@ export const favoriteRoute = createAsyncThunk('routes/addToFavorite', async (id,
     }
 })
 
-export const favoriteRouteOut = createAsyncThunk('routes/favoriteRouteOut', async (id, thunkAPI) => {
+export const favoriteRouteOut = createAsyncThunk('routes/favoriteRouteOut', async(id, thunkAPI) => {
     try {
         return await routesService.favoriteRouteOut(id)
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data)
+    }
+})
+
+export const getRecomendedRoute = createAsyncThunk('routes/getRecomendedRoute', async(id, thunkAPI) => {
+    try {
+        return await routesService.getRouteByID(id)
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data)
     }
@@ -69,12 +79,12 @@ export const routesSlice = createSlice({
     initialState,
     reducers: {
 
-        resetHasRoute:(state)=>{
-            state.hasRoute = false
-        }
-        // addLike: (state, action) => {
-        //     state.user.likedPosts.push(action.payload)
-        // },
+        resetHasRoute: (state) => {
+                state.hasRoute = false
+            }
+            // addLike: (state, action) => {
+            //     state.user.likedPosts.push(action.payload)
+            // },
     },
     extraReducers: (builder) => {
         // * EJEMPLO DE EXTRA REDUCER CON CICLO DE VIDA COMPLETO
@@ -102,7 +112,7 @@ export const routesSlice = createSlice({
             })
             .addCase(getRouteByID.fulfilled, (state, action) => {
                 state.isLoadingRouteDetail = false
-                state.routeDetail = { ...action.payload.route, evaluations: action.payload.evaluations, averageScore: action.payload.averageScore }
+                state.routeDetail = {...action.payload.route, evaluations: action.payload.evaluations, averageScore: action.payload.averageScore }
             })
             .addCase(filterRoute.pending, (state) => {
                 state.filteredRoutes = []
@@ -126,17 +136,24 @@ export const routesSlice = createSlice({
             .addCase(favoriteRouteOut.fulfilled, (state, action) => {
                 state.isLoadingFav = false
             })
-        // builder
-        // .addCase(getById.pending, (state) => {
-        //     state.isLoading = true
-        // })
-        // .addCase(getById.fulfilled, (state, action) => {
-        //     state.userDisplayed = action.payload.foundUser
-        //     state.isLoading = false
-        // })
-        // .addCase(getById.rejected, (state, action) => {
-        //     state.loadingFailed = true
-        // })
+            .addCase(getRecomendedRoute.pending, (state, action) => {
+                state.isLoadingRecomendedRoute = true
+            })
+            .addCase(getRecomendedRoute.fulfilled, (state, action) => {
+                state.isLoadingRecomendedRoute = false
+                state.recomenendedRoute = {...action.payload.route, averageScore: action.payload.averageScore }
+            })
+            // builder
+            // .addCase(getById.pending, (state) => {
+            //     state.isLoading = true
+            // })
+            // .addCase(getById.fulfilled, (state, action) => {
+            //     state.userDisplayed = action.payload.foundUser
+            //     state.isLoading = false
+            // })
+            // .addCase(getById.rejected, (state, action) => {
+            //     state.loadingFailed = true
+            // })
     },
 })
 
