@@ -47,7 +47,14 @@ const FavRoutes = () => {
     );
   });
 
-  return <div className="FavRoutes">{favorites}</div>;
+  return (
+    <>
+      {favoriteRoutes.length === 0 ?
+        <h2>Aún no has añadido ninguna ruta a la favoritas</h2>
+        :
+        <div className="FavRoutes">{favorites}</div>}
+    </>
+  )
 };
 
 export default FavRoutes;
