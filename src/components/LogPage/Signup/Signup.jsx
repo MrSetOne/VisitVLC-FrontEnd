@@ -1,7 +1,8 @@
 import { Form, Button, Input } from "antd";
 import "./Signup.scss";
-import { signUp } from "../../../features/auth/authSlice";
+import { resetNotifications, signUp } from "../../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Signup = ({ setNeedsignup }) => {
   const {
