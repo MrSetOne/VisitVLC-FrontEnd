@@ -50,7 +50,7 @@
 
 ![TheBridge](https://uploads-ssl.webflow.com/60780bff57ddc42a6adc1d7e/607eeb4b0517b6659206c10f_thebridgelogo.svg)
 
-Estre es nuestro reto de tripulaciones (Trabajo final) del BootCamp de FullStack en The Bridge, se trata de un proyecto FullStack, una herramienta de rutas urbanas del área metropolitana de Valencia.
+Estre es nuestro reto de tripulaciones (Trabajo final) del BootCamp de FullStack en The Bridge, se trata de un proyecto FullStack, una herramienta de rutas urbanas del área metropolitana de Valencia. Puedes visitar el resultado [haciendo click aquí](https://visit-vlc.vercel.app/). (La aplicación se disfruta mas desde vista movil)
 
 ## :black_nib: Concepto e inspiración
 
